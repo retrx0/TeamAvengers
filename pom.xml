@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <mainClass>com.meptun.main.MainApp</mainClass>
+        <mainClass>com.meptun.app.MainApp</mainClass>
     </properties>
 
     <organization>
@@ -50,7 +50,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>com.meptun.main.MainApp</mainClass>
+                    <mainClass>com.meptun.app.MainApp</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -65,7 +65,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>com.meptun.main.MainApp</mainClass>
+                    <mainClass>com.meptun.app.MainApp</mainClass>
                 </configuration>
             </plugin>
         </plugins>
