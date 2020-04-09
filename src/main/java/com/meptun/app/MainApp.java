@@ -1,4 +1,4 @@
-package com.meptun.main;
+package com.meptun.app;
 
 import com.meptun.models.Model;
 import com.meptun.controller.scene1Controller;

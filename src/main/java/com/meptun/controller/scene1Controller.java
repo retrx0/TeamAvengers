@@ -6,7 +6,7 @@
 package com.meptun.controller;
 
 import com.sun.javafx.css.StyleManager;
-import com.meptun.main.MainApp;
+import com.meptun.app.MainApp;
 import com.meptun.models.Model;
 import com.meptun.models.Student;
 import java.awt.PageAttributes;
