@@ -1,0 +1,118 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 6 Apr 2020, 03:50:40
+    Author     : ABDULRAHMAN ILLO
+*/
+
+
+.label{
+    -fx-text-fill: #FFF;
+}
+.oLabel{
+    -fx-text-fill: #FFF;
+}
+.bPane{
+    -fx-background-color: #121212;
+}
+
+.oButton{
+    -fx-background-color: #222;
+    -fx-text-fill: #FFF;
+}
+.oButton:hover{
+    -fx-background-color: #4e4e4e;
+}
+
+.forumTextField{
+    -fx-background-color: #222;
+    -fx-text-fill: #FFF;
+}
+.forumTextArea{
+    -fx-control-inner-background:#222222; 
+    -fx-background-color: #4e4e4e;
+    -fx-highlight-text-fill: #7a7a7a;
+    -fx-text-fill: #FFF;
+}
+
+.loginMeptunLabel{
+    -fx-text-fill: #FFF;
+}
+.loginStudentLoginLabel{
+    -fx-text-fill: #FFF;
+}
+.loginSidePane{
+    -fx-background-color: #222;
+}
+.loginRightPane{
+    -fx-background-color: #121212;
+}
+
+.sideMenulabel{
+    -fx-text-fill: #FFF;
+}
+.sideMenuPane{
+    -fx-background-color: #222;
+}
+.sideMenuButtons{
+    -fx-background-color: #222;
+    -fx-text-fill: #FFF;
+    -fx-font-size: 15px;
+}
+.sideMenuButtons:hover{
+    -fx-background-color: #4e4e4e;
+}
+.sideMenuButtons:focused{
+    -fx-background-color: #121212;
+}
+
+.topMenuLabel{
+    -fx-text-fill: #FFF;
+}
+.topMenuPane{
+    -fx-background-color: #111111;
+}
+.topMenuButtons{
+    -fx-background-color: #222;
+    -fx-text-fill: #FFF;
+}
+.topMenuButtons:hover{
+    -fx-background-color: #4e4e4e;
+}
+
+.grid-view{
+    -fx-background-color: #222;
+}
+
+.table-view .column-header, .table-view .column-header .filler,
+.table-view .column-header-background .filler {   
+    -fx-background-color:  #222;
+    -fx-stroke: transparent;
+    -fx-size:50;
+    -fx-alignment: CENTER ;    
+    -fx-text-alignment: center;
+
+}
+.table-row-cell:filled:hover {
+
+    -fx-size:50;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+
+
+}
+.table-view:row-selection {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-fixed-cell-size: 50;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+
+}
+.table-view .table-column{
+    -fx-text-alignment: center;
+    -fx-alignment: CENTER 
+}
