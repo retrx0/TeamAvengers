@@ -6,6 +6,7 @@
 package com.meptun.models;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -32,14 +34,17 @@ public class Course implements Serializable{
     @JoinColumn(name = "courseLecturer")
     @ManyToOne
     private Teacher courseLecturer;
+    @OneToMany(mappedBy = "course")
+    private List<Exams> examss;
+
+    public Course() {
+    }
 
     public Course(String courseName, CourseType courseType, Teacher courseLecturer) {
         this.courseName = courseName;
         this.courseType = courseType;
         this.courseLecturer = courseLecturer;
     }
-    
-    
 
     public String getCourseCode() {
         return courseCode;

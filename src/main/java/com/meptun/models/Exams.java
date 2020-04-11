@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.Generated;
 
@@ -22,10 +24,11 @@ import org.hibernate.annotations.Generated;
 @Entity
 @Table(name = "Exams")
 public class Exams implements Serializable{
-    int id;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "course")
+    int id;
+    @JoinColumn(name = "course")
+    @ManyToOne
     private Course course;
     @Column(name = "dateOfExam")
     private LocalDate dateOfExam;
@@ -33,7 +36,9 @@ public class Exams implements Serializable{
     private int headCount;
     @Column(name = "room")
     private String room;
-   
+
+    public Exams() {
+    }
     
     public Exams(Course course, LocalDate dateOfExam, int headCount, String room) {
         this.course = course;

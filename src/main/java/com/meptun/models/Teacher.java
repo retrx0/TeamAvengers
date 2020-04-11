@@ -32,7 +32,6 @@ public class Teacher implements Serializable{
     @Column(name = "email")
     private String email;
     
-    
     public Teacher() {
     }
 

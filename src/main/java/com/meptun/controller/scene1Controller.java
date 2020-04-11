@@ -29,6 +29,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyCode;
@@ -45,6 +46,7 @@ import javafx.scene.paint.Color;
  */
 public class scene1Controller implements Initializable {
     
+    //<editor-fold defaultstate="collapsed" desc="FXML Variables">
     @FXML private AnchorPane coursesPane;
     @FXML private AnchorPane containerPane;
     @FXML private AnchorPane sideMenuPane;
@@ -65,7 +67,8 @@ public class scene1Controller implements Initializable {
     @FXML private ToggleButton darkModeToggleButtton;
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
-
+    @FXML private TableView<?> coursesTable;
+//</editor-fold>
     
     void showNode(StackPane sp, Node nodeToShow){
        sp.getChildren().clear();
