@@ -5,15 +5,41 @@
  */
 package com.meptun.models;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  *
  * @author roony
  */
-public class Course {
+@Entity
+@Table(name = "Course")
+public class Course implements Serializable{
+    @Id
+    @Column(name = "courseCode")
     private String courseCode;
+    @Column(name = "courseName")
     private String courseName;
+    @Column(name = "courseType")
     private CourseType courseType;
+    @JoinColumn(name = "courseLecturer")
+    @ManyToOne
     private Teacher courseLecturer;
+
+    public Course(String courseName, CourseType courseType, Teacher courseLecturer) {
+        this.courseName = courseName;
+        this.courseType = courseType;
+        this.courseLecturer = courseLecturer;
+    }
+    
+    
 
     public String getCourseCode() {
         return courseCode;
