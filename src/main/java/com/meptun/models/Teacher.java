@@ -5,14 +5,36 @@
  */
 package com.meptun.models;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import org.hibernate.annotations.Generated;
+
 /**
  *
  * @author roony
  */
-public class Teacher {
+@Entity
+@Table(name = "Teachers")
+public class Teacher implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    int id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "SubjectName")
     private String subjectName;
+    @Column(name = "email")
     private String email;
+    
+    
+    public Teacher() {
+    }
 
     public String getName() {
         return name;
