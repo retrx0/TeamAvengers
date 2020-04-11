@@ -11,5 +11,5 @@ mini version of Neptun called "Meptun"
 - password - admin
 
 
-check the main class for login username and password
+check the main class for login username and password in mainApp
   
