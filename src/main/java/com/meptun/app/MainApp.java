@@ -41,7 +41,7 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         Student me = new Student("Abdulrahman Iliyasu", "abdulrahmaniliyasu86@gmail.com", "Computer Science Eng", 30, LocalDate.now());
         MeptunAccount m = new MeptunAccount("PCGBP2","retro", "password");
-        MeptunAccount m2 = new MeptunAccount("HJBSD4", "veer", "veer1");
+        MeptunAccount m2 = new MeptunAccount("CR97JH", "veer", "password");
         MeptunAccount m3 = new MeptunAccount("GHVSL8", "tolu", "tolu1");
         MeptunAccount m4 = new MeptunAccount("TYFVG5", "mav", "mav1");
         
