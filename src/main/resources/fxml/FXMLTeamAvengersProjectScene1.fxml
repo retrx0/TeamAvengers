@@ -22,30 +22,6 @@
    <children>
       <StackPane fx:id="upperStackPane" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="loginPane" prefHeight="600.0" prefWidth="750.0">
-               <children>
-                  <AnchorPane layoutX="230.0" onKeyPressed="#loginKeyPressed" prefHeight="600.0" prefWidth="520.0" styleClass="loginRightPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <PasswordField layoutX="162.0" layoutY="317.0" prefHeight="33.0" prefWidth="197.0" promptText="Password" />
-                        <TextField layoutX="162.0" layoutY="255.0" prefHeight="33.0" prefWidth="197.0" promptText="meptun code" />
-                        <Label alignment="CENTER" layoutX="194.0" layoutY="195.0" prefHeight="33.0" prefWidth="133.0" styleClass="loginStudentLoginLabel" text="Student Login" textAlignment="CENTER">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="207.0" layoutY="372.0" mnemonicParsing="false" onAction="#loginButtonPressed" prefHeight="33.0" prefWidth="106.0" text="Login" />
-                     </children>
-                  </AnchorPane>
-                  <Pane prefHeight="600.0" prefWidth="230.0" styleClass="loginSidePane" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label alignment="CENTER" layoutX="32.0" layoutY="62.0" prefHeight="66.0" prefWidth="166.0" styleClass="loginMeptunLabel" text="Meptun" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold Italic" size="37.0" />
-                           </font></Label>
-                     </children>
-                  </Pane>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="upperHome" prefHeight="600.0" prefWidth="750.0">
                <children>
                   <AnchorPane fx:id="sideMenuPane" prefHeight="600.0" prefWidth="120.0" styleClass="sideMenuPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -246,6 +222,30 @@
                         </StackPane>
                      </children>
                   </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="loginPane" prefHeight="600.0" prefWidth="750.0">
+               <children>
+                  <AnchorPane layoutX="230.0" onKeyPressed="#loginKeyPressed" prefHeight="600.0" prefWidth="520.0" styleClass="loginRightPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <PasswordField fx:id="passwordField" layoutX="162.0" layoutY="317.0" prefHeight="33.0" prefWidth="197.0" promptText="Password" />
+                        <TextField fx:id="usernameField" layoutX="162.0" layoutY="255.0" prefHeight="33.0" prefWidth="197.0" promptText="Username" />
+                        <Label alignment="CENTER" layoutX="194.0" layoutY="195.0" prefHeight="33.0" prefWidth="133.0" styleClass="loginStudentLoginLabel" text="Student Login" textAlignment="CENTER">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="207.0" layoutY="372.0" mnemonicParsing="false" onAction="#loginButtonPressed" prefHeight="33.0" prefWidth="106.0" text="Login" />
+                     </children>
+                  </AnchorPane>
+                  <Pane prefHeight="600.0" prefWidth="230.0" styleClass="loginSidePane" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label alignment="CENTER" layoutX="32.0" layoutY="62.0" prefHeight="66.0" prefWidth="166.0" styleClass="loginMeptunLabel" text="Meptun" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="37.0" />
+                           </font></Label>
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
          </children>

@@ -1,4 +1,4 @@
-package com.meptun.DB;
+package com.meptun.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;

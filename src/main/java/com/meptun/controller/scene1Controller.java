@@ -7,12 +7,16 @@ package com.meptun.controller;
 
 import com.sun.javafx.css.StyleManager;
 import com.meptun.app.MainApp;
+import com.meptun.models.MeptunAccount;
 import com.meptun.models.Model;
 import com.meptun.models.Student;
+import com.meptun.hibernate.JPAStudentDAO;
+import com.meptun.hibernate.StudentDAO;
 import java.awt.PageAttributes;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +28,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -57,8 +63,9 @@ public class scene1Controller implements Initializable {
     @FXML private Label emailLabel;
     @FXML private Label dateOfBirthLabel;
     @FXML private ToggleButton darkModeToggleButtton;
-    
-    Student me = new Student("Abdulrahman Iliyasu", "abdulrahmaniliyasu86@gmail.com", "Computer Science Eng", "PCGBP2", 30, LocalDate.now());
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+
     
     void showNode(StackPane sp, Node nodeToShow){
        sp.getChildren().clear();
@@ -75,6 +82,20 @@ public class scene1Controller implements Initializable {
         ft.setFromValue(0);
         ft.setToValue(1);
         ft.play();
+    }
+    void login(){
+        StudentDAO sDAO = new JPAStudentDAO();
+         List<Student> l = sDAO.listStudents();
+         for(int i=0;i<l.size();i++){
+            if(l.get(i).getMeptunAccount().getUsername().equals(usernameField.getText()) && l.get(i).getMeptunAccount().getPassword().equals(passwordField.getText())){
+                showNode(upperStackPane, upperHome);
+                idLabel.setText(l.get(i).getMeptunAccount().getMeptuncode());
+                nameLabel.setText(l.get(i).getFull_name());
+                majorLabel.setText(l.get(i).getMajor());
+                emailLabel.setText(l.get(i).getEmail());
+                dateOfBirthLabel.setText(l.get(i).getBirthDate().toString());
+            }
+        }
     }
 
     @FXML void coursesButtonPressed() {
@@ -100,11 +121,11 @@ public class scene1Controller implements Initializable {
     }
     @FXML void loginKeyPressed(KeyEvent ev){
         if(ev.getCode() == KeyCode.ENTER){
-            showNode(upperStackPane, upperHome);
+            login();
         }
     }
     @FXML void loginButtonPressed(){
-        showNode(upperStackPane, upperHome);
+        login();
     }
     @FXML void logoutButtonPressed(){
         showNode(upperStackPane, loginPane);
@@ -118,11 +139,6 @@ public class scene1Controller implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        idLabel.setText(me.getID());
-        nameLabel.setText(me.getName());
-        majorLabel.setText(me.getMajor());
-        emailLabel.setText(me.getEmail());
-        dateOfBirthLabel.setText(me.getBirthDate().toString());
         showNode(upperStackPane, loginPane);
         showNode(menuStackPane, homePane);
         // TODO
