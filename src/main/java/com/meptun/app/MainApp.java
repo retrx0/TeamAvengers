@@ -53,6 +53,7 @@ public class MainApp extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         //Data Access Objects
         StudentDAO sDAO = new JPAStudentDAO();
         TeacherDAO tDAO = new JPATeacherDAO();
