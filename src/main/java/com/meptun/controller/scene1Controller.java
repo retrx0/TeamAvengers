@@ -7,7 +7,7 @@ package com.meptun.controller;
 
 import com.sun.javafx.css.StyleManager;
 import com.meptun.app.MainApp;
-import com.meptun.com.extras.ShakeTransition;
+import com.meptun.extras.ShakeTransition;
 import com.meptun.hibernate.CourseDAO;
 import com.meptun.hibernate.ExamsDAO;
 import com.meptun.hibernate.JPACourseDAO;

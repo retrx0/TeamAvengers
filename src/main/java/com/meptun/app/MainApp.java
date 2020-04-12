@@ -9,8 +9,10 @@ import com.meptun.models.Student;
 import com.meptun.hibernate.HibernateUtil;
 import com.meptun.hibernate.JPACourseDAO;
 import com.meptun.hibernate.JPAExamsDAO;
+import com.meptun.hibernate.JPAMeptunAccountDAO;
 import com.meptun.hibernate.JPAStudentDAO;
 import com.meptun.hibernate.JPATeacherDAO;
+import com.meptun.hibernate.MeptunAccountDAO;
 import com.meptun.hibernate.StudentDAO;
 import com.meptun.hibernate.TeacherDAO;
 import com.meptun.models.Course;
@@ -51,16 +53,12 @@ public class MainApp extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        SessionFactory sf = HibernateUtil.getSessionFactory();
-        Session session = sf.openSession();
-        session.beginTransaction();
-        //SQLQuery query = session.createSQLQuery("drop table Teachers, Exams, MeptunAccount, Students,Course");
-        //query.executeUpdate();
         //Data Access Objects
         StudentDAO sDAO = new JPAStudentDAO();
         TeacherDAO tDAO = new JPATeacherDAO();
         ExamsDAO eDAO = new JPAExamsDAO();
         CourseDAO cDAO = new JPACourseDAO();
+        MeptunAccountDAO maDAO = new JPAMeptunAccountDAO();
         //Students Objects
         Student me = new Student("PCGBP2","Abdulrahman Iliyasu", "abdulrahmaniliyasu86@gmail.com", "Computer Science Eng", 30, LocalDate.now());
         Student s2 = new  Student("CR97JH","Veer", "veer@gmail.com", "Computer Science Eng", 35, LocalDate.now());
@@ -95,14 +93,11 @@ public class MainApp extends Application {
         eDAO.saveExam(e1);
         eDAO.saveExam(e2);
         eDAO.saveExam(e3);
-        
-      //saving meptun accounts to DB
-        session.save(m);
-        session.save(m2);
-        session.save(m3);
-        session.save(m4);
-        session.getTransaction().commit();
-        session.close();
+        //saving meptun accounts to DB
+        maDAO.saveMeptunAccount(m);
+        maDAO.saveMeptunAccount(m2);
+        maDAO.saveMeptunAccount(m3);
+        maDAO.saveMeptunAccount(m4);
         //setting course lecturers
         sdfe.setCourseLecturer(kocsis);
         cs.setCourseLecturer(tothl);
