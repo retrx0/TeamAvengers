@@ -2,11 +2,21 @@ package com.meptun.app;
 
 import com.meptun.models.Model;
 import com.meptun.controller.scene1Controller;
+import com.meptun.hibernate.CourseDAO;
+import com.meptun.hibernate.ExamsDAO;
 import com.meptun.models.MeptunAccount;
 import com.meptun.models.Student;
 import com.meptun.hibernate.HibernateUtil;
+import com.meptun.hibernate.JPACourseDAO;
+import com.meptun.hibernate.JPAExamsDAO;
 import com.meptun.hibernate.JPAStudentDAO;
+import com.meptun.hibernate.JPATeacherDAO;
 import com.meptun.hibernate.StudentDAO;
+import com.meptun.hibernate.TeacherDAO;
+import com.meptun.models.Course;
+import com.meptun.models.CourseType;
+import com.meptun.models.Exams;
+import com.meptun.models.Teacher;
 import java.time.LocalDate;
 import java.util.List;
 import javafx.application.Application;
@@ -15,6 +25,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -39,38 +51,86 @@ public class MainApp extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Student me = new Student("Abdulrahman Iliyasu", "abdulrahmaniliyasu86@gmail.com", "Computer Science Eng", 30, LocalDate.now());
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+        Session session = sf.openSession();
+        session.beginTransaction();
+        //SQLQuery query = session.createSQLQuery("drop table Teachers, Exams, MeptunAccount, Students,Course");
+        //query.executeUpdate();
+        //Data Access Objects
+        StudentDAO sDAO = new JPAStudentDAO();
+        TeacherDAO tDAO = new JPATeacherDAO();
+        ExamsDAO eDAO = new JPAExamsDAO();
+        CourseDAO cDAO = new JPACourseDAO();
+        //Students Objects
+        Student me = new Student("PCGBP2","Abdulrahman Iliyasu", "abdulrahmaniliyasu86@gmail.com", "Computer Science Eng", 30, LocalDate.now());
+        Student s2 = new  Student("CR97JH","Veer", "veer@gmail.com", "Computer Science Eng", 35, LocalDate.now());
+        Student s3 = new Student("GHVSL8","Tolu", "tolu@gmail.com", "Computer Science Eng", 30, LocalDate.now());
+        Student s4 = new Student("TYFVG5","Mav", "mav@gmail.com", "Computer Science Eng",30, LocalDate.now());
+        //Meptun Accounts
         MeptunAccount m = new MeptunAccount("PCGBP2","retro", "password");
         MeptunAccount m2 = new MeptunAccount("CR97JH", "veer", "password");
         MeptunAccount m3 = new MeptunAccount("GHVSL8", "tolu", "tolu1");
         MeptunAccount m4 = new MeptunAccount("TYFVG5", "mav", "mav1");
+        //Teacher Objects
+        Teacher kocsis = new Teacher("Kocics Gerely", "Soft Dev for Eng", "kocicsg@gmail.com");
+        Teacher imrev = new Teacher("Imre Varga", "System Programming", "imreVarga@gmail.com");
+        Teacher tothl = new Teacher("Toth lazlo", "Control Systems", "tothl@gmail.com");
+        //saving teachers to DB
+        tDAO.saveTeacher(kocsis);
+        tDAO.saveTeacher(imrev);
+        tDAO.saveTeacher(tothl);
+        //Course Objects
+        Course sdfe = new Course( "IK-SDFE","Soft-Dev for Eng", CourseType.SEMINAR);
+        Course cs = new Course("IK-CSFE", "Control Systems", CourseType.SEMINAR);
+        Course sp = new Course("IK-SPFE","System Programming", CourseType.SEMINAR);
+        //saving courses to DB
+        cDAO.saveCourse(sdfe);
+        cDAO.saveCourse(cs);
+        cDAO.saveCourse(sp);
+        //Exams
+        Exams e1 =  new Exams("EX-SDFE","IK-201", LocalDate.now(), 20);
+        Exams e2 =  new Exams("EX-CSFE","IK-205", LocalDate.now(), 20);
+        Exams e3 =  new Exams("EX-SPFE","IK-206", LocalDate.now(), 20);
+        //saving exams to DB
+        eDAO.saveExam(e1);
+        eDAO.saveExam(e2);
+        eDAO.saveExam(e3);
         
-        SessionFactory sf = HibernateUtil.getSessionFactory();
-        Session session = sf.openSession();
-        session.beginTransaction();
-        
+      //saving meptun accounts to DB
         session.save(m);
         session.save(m2);
         session.save(m3);
         session.save(m4);
         session.getTransaction().commit();
         session.close();
-        Student s2 = new  Student("Veer", "veer@gmail.com", "Computer Science Eng", 35, LocalDate.now());
-        Student s3 = new Student("Tolu", "tolu@gmail.com", "Computer Science Eng", 30, LocalDate.now());
-        Student s4 = new Student("Mav", "mav@gmail.com", "Computer Science Eng",30, LocalDate.now());
-        try (StudentDAO sDAO = new JPAStudentDAO()){       
-            me.setMeptunAccount(m);
-            s2.setMeptunAccount(m2);
-            s3.setMeptunAccount(m3);
-            s4.setMeptunAccount(m4);
-            sDAO.saveStudent(me);
-            sDAO.saveStudent(s2);
-            sDAO.saveStudent(s3);
-            sDAO.saveStudent(s4);
-            List<Student> l = sDAO.listStudents();
-            System.out.println("list "+ l);
-        }
-        catch(Exception e){}
+        //setting course lecturers
+        sdfe.setCourseLecturer(kocsis);
+        cs.setCourseLecturer(tothl);
+        sp.setCourseLecturer(imrev);
+        //setting exam courses
+        e1.setCourse(sdfe);
+        e2.setCourse(cs);
+        e3.setCourse(sp);
+        //saving exam and courses again to reflect change
+        eDAO.saveExam(e1);
+        cDAO.saveCourse(sdfe);
+        eDAO.saveExam(e2);
+        cDAO.saveCourse(cs);
+        eDAO.saveExam(e3);
+        cDAO.saveCourse(sp);
+        //setting meptun account to students
+        me.setMeptunAccount(m);
+        s2.setMeptunAccount(m2);
+        s3.setMeptunAccount(m3);
+        s4.setMeptunAccount(m4);
+        //saving students
+        sDAO.saveStudent(me);
+        sDAO.saveStudent(s2);
+        sDAO.saveStudent(s3);
+        sDAO.saveStudent(s4);
+        List<Student> l = sDAO.listStudents();
+        System.out.println("list "+ l);
+        
         launch(args);
     }
 

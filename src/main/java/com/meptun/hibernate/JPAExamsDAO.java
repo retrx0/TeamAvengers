@@ -7,6 +7,7 @@ package com.meptun.hibernate;
 
 import com.meptun.models.Exams;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -16,13 +17,12 @@ import org.hibernate.Transaction;
  */
 public class JPAExamsDAO implements ExamsDAO{
     
-     Transaction transaction;
+    Transaction transaction;
     Session session;
     
     public JPAExamsDAO() {
         session = HibernateUtil.getSessionFactory().openSession();
-    }
-    
+    }    
 
     @Override
     public void saveExam(Exams e) {
@@ -36,20 +36,42 @@ public class JPAExamsDAO implements ExamsDAO{
             }
         }
     }
-
     
     @Override
     public List<Exams> listExams() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String hql = "FROM com.meptun.models.Exams";
+        Query query = session.createQuery(hql);
+        return query.list();
     }
 
     @Override
     public void deleteExams(Exams e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            transaction = session.beginTransaction();
+            session.delete(e);
+            transaction.commit();
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
     }
 
     @Override
     public void updateExams(Exams e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            transaction = session.beginTransaction();
+            session.update(e);
+            transaction.commit();
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+    }
+    
+    @Override
+    public void close(){
+        session.close();
     }
 }

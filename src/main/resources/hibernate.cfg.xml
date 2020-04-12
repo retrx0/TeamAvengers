@@ -29,6 +29,7 @@
         <mapping class="com.meptun.models.Exams" />
         <mapping class="com.meptun.models.MeptunAccount" />
         <mapping class="com.meptun.models.Teacher" />
+        <mapping class="com.meptun.models.Course" />
 
     </session-factory>
 </hibernate-configuration>

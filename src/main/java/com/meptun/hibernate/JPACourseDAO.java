@@ -7,6 +7,7 @@ package com.meptun.hibernate;
 
 import com.meptun.models.Course;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -38,22 +39,40 @@ public class JPACourseDAO implements CourseDAO {
 
     @Override
     public void deleteCourse(Course c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            transaction = session.beginTransaction();
+            session.delete(c);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
     }
 
     @Override
     public void updateCourse(Course c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            transaction = session.beginTransaction();
+            session.update(c);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
     }
 
     @Override
     public List<Course> listCourses() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String hql = "FROM com.meptun.models.Course";
+        Query query = session.createQuery(hql);
+        return query.list();
     }
 
     @Override
     public void close() {
-        CourseDAO.super.close(); //To change body of generated methods, choose Tools | Templates.
+        session.close();
     }
 
 }

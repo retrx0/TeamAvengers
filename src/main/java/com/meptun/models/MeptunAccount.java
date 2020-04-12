@@ -29,6 +29,7 @@ public class MeptunAccount implements Serializable {
     String username;
     @Column(name = "password")
     String password;
+    
     @OneToMany(mappedBy = "meptunAccount")
     private List<Student> students;
 

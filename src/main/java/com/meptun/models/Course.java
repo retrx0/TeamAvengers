@@ -24,28 +24,41 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Course")
 public class Course implements Serializable{
-    @Id
-    @Column(name = "courseCode")
+    @Id @Column(name = "courseCode")
     private String courseCode;
+    
     @Column(name = "courseName")
     private String courseName;
+    
     @Column(name = "courseType")
     private CourseType courseType;
-    @JoinColumn(name = "courseLecturer")
-    @ManyToOne
+    
+    @Column(name = "credits")
+    int courseCredits;
+    
+    @JoinColumn(name = "courseLecturer") @ManyToOne
     private Teacher courseLecturer;
+    
     @OneToMany(mappedBy = "course")
-    private List<Exams> examss;
+    private List<Exams> exams;
 
     public Course() {
     }
 
-    public Course(String courseName, CourseType courseType, Teacher courseLecturer) {
+    public Course(String courseCode, String courseName, CourseType courseType) {
+        this.courseCode = courseCode;
         this.courseName = courseName;
         this.courseType = courseType;
-        this.courseLecturer = courseLecturer;
     }
 
+    public int getCourseCredits() {
+        return courseCredits;
+    }
+
+    public void setCourseCredits(int courseCredits) {
+        this.courseCredits = courseCredits;
+    }
+    
     public String getCourseCode() {
         return courseCode;
     }
@@ -84,6 +97,12 @@ public class Course implements Serializable{
         this.courseType = courseType;
         this.courseLecturer = courseLecturer;
     }
+
+    @Override
+    public String toString() {
+        return courseName;
+    }
+    
     
     
 }

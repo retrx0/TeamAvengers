@@ -61,13 +61,15 @@ public class JPATeacherDAO implements  TeacherDAO{
     }
 
     @Override
-    public List<Teacher> listTeachers() {String hql = "FROM com.meptun.models.Teacher";
+    public List<Teacher> listTeachers() {
+        String hql = "FROM com.meptun.models.Teacher";
         Query query = session.createQuery(hql);
         return query.list();
     }
 
     @Override
     public void close(){
+        session.close();
     }
     
 }

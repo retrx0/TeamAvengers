@@ -31,7 +31,6 @@ public class Student implements Serializable {
     @Column(name = "major")
     private String major;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private String ID;
     @Column(name = "credits")
@@ -46,7 +45,8 @@ public class Student implements Serializable {
     public Student() {
     }
 
-    public Student(String name, String email, String major, int credits, LocalDate birthDate) {
+    public Student(String id,String name, String email, String major, int credits, LocalDate birthDate) {
+        this.ID = id;
         this.full_name = name;
         this.email = email;
         this.major = major;

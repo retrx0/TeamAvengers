@@ -24,20 +24,30 @@ import org.hibernate.annotations.Generated;
 @Entity
 @Table(name = "Exams")
 public class Exams implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    @JoinColumn(name = "course")
-    @ManyToOne
-    private Course course;
+    
+    @Id @Column(name = "examCode")
+    String  examCode;
+    
+    @ManyToOne @JoinColumn(name = "course")
+    private Course course = null;
+    
     @Column(name = "dateOfExam")
     private LocalDate dateOfExam;
     @Column(name = "headCount")
     private int headCount;
     @Column(name = "room")
     private String room;
+    @Column(name="examSupervisor")
+    private String examSupervisor;
 
     public Exams() {
+    }
+    
+    public Exams(String ec,String room, LocalDate dateOfExam, int headCount) {
+        this.examCode = ec;
+        this.dateOfExam = dateOfExam;
+        this.headCount = headCount;
+        this.room = room;
     }
     
     public Exams(Course course, LocalDate dateOfExam, int headCount, String room) {
@@ -47,6 +57,22 @@ public class Exams implements Serializable{
         this.room = room;
     }
 
+    public String getExamSupervisor() {
+        return examSupervisor;
+    }
+
+    public void setExamSupervisor(String examSupervisor) {
+        this.examSupervisor = examSupervisor;
+    }
+    
+    public String getExamCode() {
+        return examCode;
+    }
+
+    public void setExamCode(String examCode) {
+        this.examCode = examCode;
+    }
+    
     public String getRoom() {
         return room;
     }
