@@ -105,6 +105,7 @@ public class scene1Controller implements Initializable {
     @FXML private Button forumSendButton;
 //</editor-fold>
     
+    //<editor-fold defaultstate="collapsed" desc="Methods">
     void shakeTextField(TextField tf){
         tf.setStyle("-fx-text-box-border: #ae0c0c");
         ShakeTransition s =new ShakeTransition(tf);
@@ -154,7 +155,9 @@ public class scene1Controller implements Initializable {
             }
         }
     }
-    
+//</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Menu Buttons">
     @FXML void coursesButtonPressed() {
         CourseDAO cdao = new JPACourseDAO();
         List<Course> courseList = cdao.listCourses();
@@ -212,6 +215,9 @@ public class scene1Controller implements Initializable {
                 darkModeToggleButtton.setText("Dark Mode");
             }
     }
+//</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Login Buttons">
     @FXML void loginKeyPressed(KeyEvent ev){
         if(ev.getCode() == KeyCode.ENTER){
             login();
@@ -227,7 +233,9 @@ public class scene1Controller implements Initializable {
         passwordField.setStyle("-fx-text-box-border: transparent");
         usernameField.setStyle("-fx-text-box-border: transparent");
     }
+//</editor-fold>
     
+    //<editor-fold defaultstate="collapsed" desc="Forum">
     @FXML void forumButtonPressed(){
         showNode(menuStackPane, forumPane);
     }
@@ -242,7 +250,8 @@ public class scene1Controller implements Initializable {
             sendForumMessage();
         }
     }
-    
+//</editor-fold>
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         showNode(upperStackPane, loginPane);
