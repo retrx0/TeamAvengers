@@ -38,7 +38,7 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLTeamAvengersProjectScene1.fxml"));
         Scene scene = new Scene(loader.load());
-        stage.setTitle("Student MS");
+        stage.setTitle("Meptun");
         stage.setScene(scene);
         
         stage.show();
