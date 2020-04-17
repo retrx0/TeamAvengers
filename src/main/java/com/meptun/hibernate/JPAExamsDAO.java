@@ -74,4 +74,5 @@ public class JPAExamsDAO implements ExamsDAO{
     public void close(){
         session.close();
     }
+    //made a small change 
 }
