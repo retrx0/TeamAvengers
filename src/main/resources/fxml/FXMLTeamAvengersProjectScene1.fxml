@@ -118,6 +118,74 @@
                                     </VBox>
                                  </children>
                               </AnchorPane>
+                              <AnchorPane fx:id="coursesPane" prefHeight="200.0" prefWidth="200.0" styleClass="bPane">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="150.0" styleClass="oLabel" text="Courses" textFill="#579fcf">
+                                       <font>
+                                          <Font size="40.0" />
+                                       </font>
+                                    </Label>
+                                    <TableView fx:id="coursesTable" layoutX="7.0" layoutY="130.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="130.0">
+                                      <columns>
+                                        <TableColumn fx:id="courseID" maxWidth="120.0" minWidth="100.0" prefWidth="59.0" text="ID" />
+                                        <TableColumn fx:id="courseName" maxWidth="400.0" minWidth="200.0" prefWidth="252.0" text="Name" />
+                                          <TableColumn fx:id="courseCredits" maxWidth="50.0" minWidth="50.0" prefWidth="-1.0" resizable="false" text="Credits" />
+                                          <TableColumn fx:id="columnCourseType" maxWidth="130.0" minWidth="50.0" prefWidth="100.0" resizable="false" text="Course Type" />
+                                      </columns>
+                                    </TableView>
+                                    <VBox layoutX="527.0" layoutY="130.0" prefHeight="274.0" prefWidth="89.0" AnchorPane.rightAnchor="15.0">
+                                       <children>
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerCoursePressed" prefHeight="50.0" styleClass="oButton" text="Register" />
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deRegisterCoursePressed" prefHeight="50.0" styleClass="oButton" text="Deregister" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="examPane" prefHeight="200.0" prefWidth="200.0" styleClass="bPane">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="150.0" styleClass="oLabel" text="Exam">
+                                       <font>
+                                          <Font size="40.0" />
+                                       </font>
+                                    </Label>
+                                    <TableView fx:id="examTable" layoutX="14.0" layoutY="130.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="130.0">
+                                      <columns>
+                                        <TableColumn fx:id="examCourse" minWidth="150.0" prefWidth="75.0" text="Course" />
+                                        <TableColumn fx:id="examDate" minWidth="100.0" prefWidth="75.0" text="Date" />
+                                          <TableColumn fx:id="examRoom" minWidth="80.0" prefWidth="75.0" text="Room" />
+                                          <TableColumn fx:id="examHeadcount" minWidth="50.0" prefWidth="75.0" text="Headcount" />
+                                          <TableColumn fx:id="examSupervisors" minWidth="90.0" prefWidth="75.0" text="Supervisors" />
+                                      </columns>
+                                    </TableView>
+                                    <VBox layoutX="527.0" layoutY="130.0" prefHeight="274.0" prefWidth="89.0" AnchorPane.rightAnchor="14.0">
+                                       <children>
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerExamPressed" prefHeight="50.0" styleClass="oButton" text="Regiter" />
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deRegisterExamPressed" prefHeight="50.0" styleClass="oButton" text="Deregister" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="teachersPane" prefHeight="200.0" prefWidth="200.0" styleClass="bPane">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="184.0" styleClass="oLabel" text="Teachers" textFill="#579fcf">
+                                       <font>
+                                          <Font size="40.0" />
+                                       </font>
+                                    </Label>
+                                    <TableView fx:id="teachersTable" layoutX="16.0" layoutY="130.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="130.0">
+                                      <columns>
+                                        <TableColumn fx:id="teacherName" maxWidth="250.0" minWidth="200.0" prefWidth="200.0" text="Name" />
+                                        <TableColumn fx:id="teacherCourse" maxWidth="250.0" minWidth="200.0" prefWidth="200.0" text="Course Name" />
+                                          <TableColumn fx:id="teacherEmail" maxWidth="250.0" minWidth="200.0" prefWidth="200.0" text="email" />
+                                      </columns>
+                                    </TableView>
+                                    <HBox layoutX="15.0" layoutY="444.0" prefHeight="50.0" prefWidth="433.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#messageTeacherPressed" prefHeight="51.0" prefWidth="127.0" styleClass="oButton" text="Message" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
                               <AnchorPane fx:id="homePane" prefHeight="200.0" prefWidth="200.0" styleClass="bPane">
                                  <children>
                                     <Label layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="150.0" styleClass="oLabel" text="Home" textFill="#579fcf">
@@ -189,81 +257,13 @@
                                           </Label>
                                        </children>
                                     </GridPane>
-                                    <Button layoutX="489.0" layoutY="202.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="69.0" styleClass="oButton" text="Edit data" AnchorPane.rightAnchor="70.0" />
+                                    <Button layoutX="489.0" layoutY="202.0" mnemonicParsing="false" onAction="#editDataButtonPressed" prefHeight="30.0" prefWidth="69.0" styleClass="oButton" text="Edit data" AnchorPane.rightAnchor="70.0" />
                                     <ListView layoutX="18.0" layoutY="290.0" prefHeight="255.0" prefWidth="500.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="290.0" />
                                     <Label layoutX="14.0" layoutY="267.0" prefHeight="21.0" prefWidth="98.0" styleClass="oLabel" text="Messages" textFill="#579fcf">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane fx:id="coursesPane" prefHeight="200.0" prefWidth="200.0" styleClass="bPane">
-                                 <children>
-                                    <Label layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="150.0" styleClass="oLabel" text="Courses" textFill="#579fcf">
-                                       <font>
-                                          <Font size="40.0" />
-                                       </font>
-                                    </Label>
-                                    <TableView fx:id="coursesTable" layoutX="7.0" layoutY="130.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="130.0">
-                                      <columns>
-                                        <TableColumn fx:id="courseID" maxWidth="120.0" minWidth="100.0" prefWidth="59.0" text="ID" />
-                                        <TableColumn fx:id="courseName" maxWidth="400.0" minWidth="200.0" prefWidth="252.0" text="Name" />
-                                          <TableColumn fx:id="courseCredits" maxWidth="50.0" minWidth="50.0" prefWidth="-1.0" resizable="false" text="Credits" />
-                                          <TableColumn fx:id="columnCourseType" maxWidth="130.0" minWidth="50.0" prefWidth="100.0" resizable="false" text="Course Type" />
-                                      </columns>
-                                    </TableView>
-                                    <VBox layoutX="527.0" layoutY="130.0" prefHeight="274.0" prefWidth="89.0" AnchorPane.rightAnchor="15.0">
-                                       <children>
-                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerCoursePressed" prefHeight="50.0" styleClass="oButton" text="Register" />
-                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deRegisterCoursePressed" prefHeight="50.0" styleClass="oButton" text="Deregister" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane fx:id="examPane" prefHeight="200.0" prefWidth="200.0" styleClass="bPane">
-                                 <children>
-                                    <Label layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="150.0" styleClass="oLabel" text="Exam">
-                                       <font>
-                                          <Font size="40.0" />
-                                       </font>
-                                    </Label>
-                                    <TableView fx:id="examTable" layoutX="14.0" layoutY="130.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="130.0">
-                                      <columns>
-                                        <TableColumn fx:id="examCourse" minWidth="150.0" prefWidth="75.0" text="Course" />
-                                        <TableColumn fx:id="examDate" minWidth="100.0" prefWidth="75.0" text="Date" />
-                                          <TableColumn fx:id="examRoom" minWidth="80.0" prefWidth="75.0" text="Room" />
-                                          <TableColumn fx:id="examHeadcount" minWidth="50.0" prefWidth="75.0" text="Headcount" />
-                                          <TableColumn fx:id="examSupervisors" minWidth="90.0" prefWidth="75.0" text="Supervisors" />
-                                      </columns>
-                                    </TableView>
-                                    <VBox layoutX="527.0" layoutY="130.0" prefHeight="274.0" prefWidth="89.0" AnchorPane.rightAnchor="14.0">
-                                       <children>
-                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerExamPressed" prefHeight="50.0" styleClass="oButton" text="Regiter" />
-                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deRegisterExamPressed" prefHeight="50.0" styleClass="oButton" text="Deregister" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane fx:id="teachersPane" prefHeight="200.0" prefWidth="200.0" styleClass="bPane">
-                                 <children>
-                                    <Label layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="184.0" styleClass="oLabel" text="Teachers" textFill="#579fcf">
-                                       <font>
-                                          <Font size="40.0" />
-                                       </font>
-                                    </Label>
-                                    <TableView fx:id="teachersTable" layoutX="16.0" layoutY="130.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="130.0">
-                                      <columns>
-                                        <TableColumn fx:id="teacherName" maxWidth="250.0" minWidth="200.0" prefWidth="200.0" text="Name" />
-                                        <TableColumn fx:id="teacherCourse" maxWidth="250.0" minWidth="200.0" prefWidth="200.0" text="Course Name" />
-                                          <TableColumn fx:id="teacherEmail" maxWidth="250.0" minWidth="200.0" prefWidth="200.0" text="email" />
-                                      </columns>
-                                    </TableView>
-                                    <HBox layoutX="15.0" layoutY="444.0" prefHeight="50.0" prefWidth="433.0">
-                                       <children>
-                                          <Button mnemonicParsing="false" onAction="#messageTeacherPressed" prefHeight="51.0" prefWidth="127.0" styleClass="oButton" text="Message" />
-                                       </children>
-                                    </HBox>
                                  </children>
                               </AnchorPane>
                            </children>

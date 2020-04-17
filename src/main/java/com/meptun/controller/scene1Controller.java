@@ -44,6 +44,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
@@ -283,11 +284,15 @@ public class scene1Controller implements Initializable {
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Deregister Course");
         dialog.setHeaderText("Select course to deregister");
+        
         ButtonType deregister = new ButtonType("Deregister", ButtonData.OK_DONE);
+        
         dialog.getDialogPane().getButtonTypes().addAll(deregister, ButtonType.CANCEL);
+        
         dialog.getDialogPane().setPrefSize(500, 200);
+        
         System.out.println(containerPane.getStylesheets().get(0));
-        if(containerPane.getStylesheets().get(0).equals("/styles/Styles.css")){
+       /* if(containerPane.getStylesheets().get(0).equals("/styles/Styles.css")){
             dialog.getDialogPane().getStylesheets().clear();
             dialog.getDialogPane().getStylesheets().add("/styles/dialog-style-light.css");
             dialog.getDialogPane().getStyleClass().clear();
@@ -298,7 +303,7 @@ public class scene1Controller implements Initializable {
             dialog.getDialogPane().getStylesheets().add("/styles/dialog-style-dark.css");
             dialog.getDialogPane().getStyleClass().clear();
             dialog.getDialogPane().getStyleClass().add("dailog");
-        }
+        }*/
         VBox vbox =new VBox();
         vbox.setPrefSize(400, 200);
         vbox.setLayoutX(50);
@@ -306,7 +311,9 @@ public class scene1Controller implements Initializable {
         
         CourseDAO cdao = new JPACourseDAO();
         ObservableList ol = FXCollections.observableArrayList();
+        
         List l = cdao.listCourses();
+        
         for(int i=0;i<l.size();i++){
             ol.add(l.get(i));
         }
@@ -336,6 +343,77 @@ public class scene1Controller implements Initializable {
     }
    @FXML void messageTeacherPressed(){
     }
+   @FXML void editDataButtonPressed(){
+       Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.setTitle("Edit data");
+        dialog.setHeaderText("Edit your personal data");
+        ButtonType done = new ButtonType("Done", ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(done, ButtonType.CANCEL);
+        
+        dialog.getDialogPane().setPrefSize(500, 200);
+
+        /*GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(10, 10, 10, 10));*/
+        
+        VBox vbox =new VBox();
+        vbox.setPrefSize(400, 200);
+        vbox.setLayoutX(50);
+        vbox.setLayoutY(100);
+        
+        TextField nameTextField = new TextField();
+        TextField emailTextField = new TextField();
+        TextField majorTextField = new TextField();
+        TextField dobTextField = new TextField();
+        
+        nameTextField.setEditable(false);
+        emailTextField.setEditable(true);
+        majorTextField.setEditable(false);
+        dobTextField.setEditable(false);
+        StudentDAO sdao = new JPAStudentDAO();
+        List<Student> l = sdao.listStudents();
+        for(int i=0;i<l.size();i++){
+            if(l.get(i).getMeptunAccount().getUsername().equals(usernameField.getText())){
+                nameTextField.setText(l.get(i).getFull_name());
+                emailTextField.setText(l.get(i).getEmail());
+                majorTextField.setText(l.get(i).getMajor());
+                dobTextField.setText(l.get(i).getBirthDate().toString());
+            }
+        }
+        vbox.getChildren().add(emailTextField);
+        /*grid.add(nameTextField, 0, 0);
+        grid.add(emailTextField, 0, 1);
+        grid.add(majorTextField, 0, 2);
+        grid.add(dobTextField, 0, 3);*/
+        
+        dialog.getDialogPane().setContent(vbox);
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == done){ 
+                    
+                }
+                if(dialogButton == ButtonType.CANCEL){
+                    for(int i=0;i<l.size();i++){
+                        if(l.get(i).getMeptunAccount().getUsername().equals(usernameField.getText())){
+                            if(!emailTextField.getText().isEmpty()){
+                                l.get(i).setEmail(emailTextField.getText());
+                                sdao.updateStudent(l.get(i));
+                                emailLabel.setText(emailTextField.getText());
+                            }
+                            else{
+                                Alert a = new Alert(Alert.AlertType.ERROR);
+                                a.setHeaderText("Email texfield is empty");
+                                a.setContentText("Email textfield can't be empty");
+                                a.show();
+                            }
+                        }
+                    }
+                }
+                return null;
+            });
+
+        Optional<Pair<String, String>> result = dialog.showAndWait();
+   }
     
     //<editor-fold defaultstate="collapsed" desc="Forum">
     @FXML void forumButtonPressed(){
