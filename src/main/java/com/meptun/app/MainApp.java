@@ -71,7 +71,7 @@ public class MainApp extends Application {
         MeptunAccount m3 = new MeptunAccount("GHVSL8", "tolu", "tolu1");
         MeptunAccount m4 = new MeptunAccount("TYFVG5", "mav", "mav1");
         //Teacher Objects
-        Teacher kocsis = new Teacher("Kocics Gerely", "Soft Dev for Eng", "kocicsg@gmail.com");
+        Teacher kocsis = new Teacher("Kocsis Gergely", "Soft Dev for Eng", "kocicsg@gmail.com");
         Teacher imrev = new Teacher("Imre Varga", "System Programming", "imreVarga@gmail.com");
         Teacher tothl = new Teacher("Toth lazlo", "Control Systems", "tothl@gmail.com");
         //saving teachers to DB

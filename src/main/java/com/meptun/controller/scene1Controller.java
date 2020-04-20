@@ -22,6 +22,8 @@ import com.meptun.hibernate.TeacherDAO;
 import com.meptun.models.Course;
 import com.meptun.models.CourseType;
 import com.meptun.models.Exams;
+import com.meptun.models.Message;
+import com.meptun.models.MessageListCell;
 import com.meptun.models.Teacher;
 import java.awt.PageAttributes;
 import java.io.IOException;
@@ -51,6 +53,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -66,6 +70,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import javafx.scene.paint.Color;
+import javafx.util.Callback;
 import javafx.util.Pair;
 
 /**
@@ -82,6 +87,7 @@ public class scene1Controller implements Initializable {
     @FXML private AnchorPane topMenuPane;
     @FXML private AnchorPane loginPane;
     @FXML private AnchorPane teachersPane;
+    @FXML private AnchorPane messagesPane;
     @FXML private AnchorPane upperHome;
     @FXML private AnchorPane homePane;
     @FXML private AnchorPane forumPane;
@@ -94,6 +100,9 @@ public class scene1Controller implements Initializable {
     @FXML private Label emailLabel;
     @FXML private Label loginActionLabel;
     @FXML private Label dateOfBirthLabel;
+    @FXML private Label coursesTakenLabel;
+    @FXML private Label creditsTakenLabel;
+    @FXML private Label examsTakenLabel;
     @FXML private ToggleButton darkModeToggleButtton;
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
@@ -114,7 +123,9 @@ public class scene1Controller implements Initializable {
     @FXML private TableColumn<Exams, String> examSupervisors;
     @FXML private TextArea forumTextArea;
     @FXML private TextField forumTextField;
+    @FXML private TextArea messageTextArea;
     @FXML private Button forumSendButton;
+    @FXML private ListView<Message> messageListView;
 //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Methods">
@@ -151,15 +162,23 @@ public class scene1Controller implements Initializable {
     }
     void login(){
         StudentDAO sDAO = new JPAStudentDAO();
-         List<Student> l = sDAO.listStudents();
+        CourseDAO cDao = new JPACourseDAO();
+        ExamsDAO edao  = new JPAExamsDAO();
+        List el = edao.listExams();
+        List cl = cDao.listCourses();
+        List<Student> l = sDAO.listStudents();
          for(int i=0;i<l.size();i++){
             if(l.get(i).getMeptunAccount().getUsername().equals(usernameField.getText()) && l.get(i).getMeptunAccount().getPassword().equals(passwordField.getText())){
                 showNode(upperStackPane, upperHome);
+                showNode(menuStackPane, homePane);
                 idLabel.setText(l.get(i).getMeptunAccount().getMeptuncode());
                 nameLabel.setText(l.get(i).getFull_name());
                 majorLabel.setText(l.get(i).getMajor());
                 emailLabel.setText(l.get(i).getEmail());
                 dateOfBirthLabel.setText(l.get(i).getBirthDate().toString());
+                coursesTakenLabel.setText(""+cl.size());
+                examsTakenLabel.setText(""+el.size());
+                creditsTakenLabel.setText(""+l.get(i).getCredits());
             }else{
                 shakeTextField(usernameField);
                 shakePasswordField(passwordField);
@@ -184,6 +203,9 @@ public class scene1Controller implements Initializable {
         coursesTable.setItems(ol);
         showNode(menuStackPane, coursesPane);
     }
+       @FXML void messagesButtonPressed(){
+       showNode(menuStackPane, messagesPane);
+   }
     @FXML void homeButtonPressed() {
         showNode(menuStackPane, homePane);
     }
@@ -223,7 +245,7 @@ public class scene1Controller implements Initializable {
             }
             else if(!darkModeToggleButtton.isSelected()){
                 containerPane.getStylesheets().clear();
-                containerPane.getStylesheets().add("/styles/Styles.css");
+                containerPane.getStylesheets().add("/styles/Style-lightMode.css");
                 darkModeToggleButtton.setText("Dark Mode");
             }
     }
@@ -249,23 +271,23 @@ public class scene1Controller implements Initializable {
     
    @FXML void registerCoursePressed(){
         Dialog<Pair<String, String>> dialog = new Dialog<>();
-        dialog.setTitle("Register Course");
+        dialog.setTitle("Course Registration");
         dialog.setHeaderText("Select course to register");
         ButtonType register = new ButtonType("Register", ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(register, ButtonType.CANCEL);
-        
         dialog.getDialogPane().setPrefSize(500, 400);
-
+        if(containerPane.getStylesheets().get(0).equals("/styles/Style-lightMode.css")){
+            dialog.getDialogPane().getStylesheets().clear();
+            dialog.getDialogPane().getStylesheets().add("/styles/Style-lightMode.css");
+        }
+        else if(containerPane.getStylesheets().get(0).equals("/styles/Style-darkMode.css")){
+            dialog.getDialogPane().getStylesheets().clear();
+            dialog.getDialogPane().getStylesheets().add("/styles/Style-darkMode.css");
+        }
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(10, 10, 10, 10));
-
-        Label hourLabel = new Label("Hour");
-        Label minuteLabel = new Label("Minute");
-
-        grid.add(hourLabel, 0, 0);
-        grid.add(minuteLabel, 1, 0);
         
         dialog.getDialogPane().setContent(grid);
 
@@ -282,28 +304,21 @@ public class scene1Controller implements Initializable {
     }
    @FXML void deRegisterCoursePressed(){
         Dialog<Pair<String, String>> dialog = new Dialog<>();
-        dialog.setTitle("Deregister Course");
+        dialog.setTitle("Course Deregistration");
         dialog.setHeaderText("Select course to deregister");
         
         ButtonType deregister = new ButtonType("Deregister", ButtonData.OK_DONE);
-        
         dialog.getDialogPane().getButtonTypes().addAll(deregister, ButtonType.CANCEL);
-        
         dialog.getDialogPane().setPrefSize(500, 200);
         
-        System.out.println(containerPane.getStylesheets().get(0));
-       /* if(containerPane.getStylesheets().get(0).equals("/styles/Styles.css")){
+        if(containerPane.getStylesheets().get(0).equals("/styles/Style-lightMode.css")){
             dialog.getDialogPane().getStylesheets().clear();
-            dialog.getDialogPane().getStylesheets().add("/styles/dialog-style-light.css");
-            dialog.getDialogPane().getStyleClass().clear();
-            dialog.getDialogPane().getStyleClass().add("dialog");
+            dialog.getDialogPane().getStylesheets().add("/styles/Style-lightMode.css");
         }
         else if(containerPane.getStylesheets().get(0).equals("/styles/Style-darkMode.css")){
             dialog.getDialogPane().getStylesheets().clear();
-            dialog.getDialogPane().getStylesheets().add("/styles/dialog-style-dark.css");
-            dialog.getDialogPane().getStyleClass().clear();
-            dialog.getDialogPane().getStyleClass().add("dailog");
-        }*/
+            dialog.getDialogPane().getStylesheets().add("/styles/Style-darkMode.css");
+        }
         VBox vbox =new VBox();
         vbox.setPrefSize(400, 200);
         vbox.setLayoutX(50);
@@ -318,7 +333,7 @@ public class scene1Controller implements Initializable {
             ol.add(l.get(i));
         }
         ComboBox coursesCombo = new ComboBox(ol);
-        coursesCombo.setPromptText("Select course to deregister");
+        coursesCombo.getSelectionModel().selectFirst();
         //coursesCombo.setLayoutX(50);
         //coursesCombo.setLayoutY(120);
         coursesCombo.setPrefSize(400, 40);
@@ -351,7 +366,14 @@ public class scene1Controller implements Initializable {
         dialog.getDialogPane().getButtonTypes().addAll(done, ButtonType.CANCEL);
         
         dialog.getDialogPane().setPrefSize(500, 200);
-
+        if(containerPane.getStylesheets().get(0).equals("/styles/Style-lightMode.css")){
+            dialog.getDialogPane().getStylesheets().clear();
+            dialog.getDialogPane().getStylesheets().add("/styles/Style-lightMode.css");
+        }
+        else if(containerPane.getStylesheets().get(0).equals("/styles/Style-darkMode.css")){
+            dialog.getDialogPane().getStylesheets().clear();
+            dialog.getDialogPane().getStylesheets().add("/styles/Style-darkMode.css");
+        }
         /*GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
@@ -411,10 +433,14 @@ public class scene1Controller implements Initializable {
                 }
                 return null;
             });
-
+            
         Optional<Pair<String, String>> result = dialog.showAndWait();
    }
-    
+   @FXML void messageListViewMouceClicked(){
+       messageTextArea.clear();
+       messageTextArea.appendText(messageListView.getSelectionModel().getSelectedItem().getMessageBody());
+   }
+
     //<editor-fold defaultstate="collapsed" desc="Forum">
     @FXML void forumButtonPressed(){
         showNode(menuStackPane, forumPane);
@@ -435,9 +461,22 @@ public class scene1Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         containerPane.getStylesheets().clear();
-        containerPane.getStylesheets().add("/styles/Styles.css");
+        containerPane.getStylesheets().add("/styles/Style-lightMode.css");
+        containerPane.setPrefWidth(800);
         showNode(upperStackPane, loginPane);
+        usernameField.requestFocus();
         showNode(menuStackPane, homePane);
+       messageListView.setCellFactory((ListView<Message> listView) -> new MessageListCell());
+       Message m1 = new Message("Neptun", "Abdul", "Soft Dev for Eng", LocalDate.now(), "Well done team Avengers, your project is do far the best, keep it up, you've so far shown that you're really good and you can really work hard.");
+       Message m2 = new Message("Apple", "Abdul", "Congratulations!", LocalDate.now(), "This is a test message, so if you come across it either ignore it or just be imprerssed by the developers, thank you for reading"
+               + "This is a test message, so if you come across it either ignore it or just be imprerssed by the developers, thank you for reading This is a test message, so if you come across it either ignore it or just be imprerssed by the developers, thank you for reading"
+               + "This is a test message, so if you come across it either ignore it or just be imprerssed by the developers, thank you for reading"
+       );
+       ObservableList<Message> messageObservableList = FXCollections.observableArrayList();
+       messageObservableList.add(m2);
+       messageObservableList.add(m1);
+       messageListView.getItems().addAll(messageObservableList);
+       messageTextArea.appendText(messageObservableList.get(0).getMessageBody());
         // TODO
     }
     
