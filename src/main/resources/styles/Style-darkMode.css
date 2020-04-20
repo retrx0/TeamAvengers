@@ -34,7 +34,7 @@ and open the template in the editor.
 .forumTextArea{
     -fx-control-inner-background:#222222; 
     -fx-background-color: #4e4e4e;
-    -fx-highlight-text-fill: #7a7a7a;
+    -fx-highlight-text-fill: #FFF;
     -fx-text-fill: #FFF;
 }
 
@@ -95,7 +95,6 @@ and open the template in the editor.
 .grid-view{
     -fx-background-color: #222;
 }
-
 
 .table-view .column-header, .table-view .column-header .filler,
 .table-view .column-header-background .filler {   
@@ -163,11 +162,11 @@ scroll-bar:horizontal .track, .scroll-bar:vertical .track{
     -fx-background-radius : 0.0em;
     -fx-padding :0.0 10.0 0.0 0.0;
 }
- .scroll-bar .increment-arrow, .scroll-bar .decrement-arrow{
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow{
     -fx-shape : " ";    
     -fx-padding :0.15em 0.0;
 }
- .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow{
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow{
     -fx-shape : " ";    
     -fx-padding :0.0 0.15em;
 }
@@ -185,16 +184,71 @@ scroll-bar:horizontal .track, .scroll-bar:vertical .track{
 .list-view{
     -fx-padding: 0px;
     -fx-background-color: #222;
+    -fx-font-size: 15px;
 }
 .list-view:focused{}
-.list-cell:filled:selected:focused, .list-cell:filled:selected {
+.list-cell:filled, .list-cell:selected, .list-cell:focused, .list-cell:filled:selected {
     -fx-background-color: #4e4e4e;
-    -fx-text-fill: white;
+    -fx-text-fill: #FFF;
 }
-.list-cell:even { /* <=== changed to even */
+.list-cell:even,.list-cell:odd { /* <=== changed to even */
     -fx-background-color: #222;
+    -fx-font-size: 15px;
 }
 .list-cell:filled:hover {
+    -fx-background-color: #4e4e4e;
+    -fx-text-fill: #FFF;
+}
+
+.dialog-pane {
+    -fx-background-color: #121212;
+    -fx-padding: 0;
+}
+.dialog-pane > .expandable-content {
+    -fx-padding: 0.666em; /* 8px */
+}
+.dialog-pane > .button-bar > .container {
+    -fx-background-color: #121212;
+    -fx-padding: 0.833em; /* 10px */
+}
+.dialog-pane > .content.label {
+    -fx-alignment: top-left;
+    -fx-padding: 1.333em 0.833em 0 0.833em; /* 16px 10px 0px 10px */
+}
+.dialog-pane > .content {
+    -fx-padding: 0.833em; /* 10 */
+}
+.dialog-pane > .content > .combo-box, .dialog-pane > .content > .combo-box .list-view, .dialog-pane > .content > .text-field{
+    -fx-background-color: #222;
+    -fx-text-fill:#FFF;
+}
+.dialog-pane:no-header .graphic-container {
+    -fx-padding: 0.833em 0 0 0.833em; /* 10px 0px 0px 10px */
+}
+.dialog-pane:header .header-panel {
+    /*-fx-padding: 0.833em 1.166em 0.833em 1.166em; *//* 10px 14px 10px 14px */
+    -fx-padding: 0.833em; /* 10px */
+    -fx-background-color: #222;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+.dialog-pane:header .header-panel .label {
+    -fx-font-size: 1.167em; /* 14px */
+    -fx-wrap-text: true;
+}
+.dialog-pane:header .header-panel .graphic-container {
+    /* This prevents the text in the header running directly into the graphic */
+    -fx-padding: 0 0 0 0.833em; /* 0px 0px 0px 10px */
+}
+.dialog-pane > .button-bar > .container > .details-button {
+  -fx-alignment: baseline-left;
+  -fx-focus-traversable: false;
+  -fx-padding: 0.416em; /* 5px */
+}
+.dialog-pane > .button-bar> .container > .button{
+    -fx-background-color: #222222;
+    -fx-text-fill: #FFF;
+}
+.dialog-pane > .button-bar> .container > .button:hover{
     -fx-background-color: #4e4e4e;
     -fx-text-fill: #FFF;
 }
