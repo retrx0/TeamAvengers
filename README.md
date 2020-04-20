@@ -1,7 +1,7 @@
 # TeamAvengers
 Software Dev 2020 school group project
 
-mini version of Neptun called "Meptun"
+mini version of Neptun "Meptun"
 
 ## Database:
 - connection driver_class - org.h2.Driver

@@ -1,0 +1,48 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16 Apr 2020, 22:43:07
+    Author     : ABDULRAHMAN ILLO
+*/
+/*.label{
+    -fx-text-fill:#FFF;
+}
+.button{
+    -fx-border-radius: 0px;
+    -fx-background-color: #222;
+    -fx-text-fill: #FFF;
+}
+.button:hover{
+    -fx-background-color: #4D4C4F;
+    -fx-text-fill: #FFF;
+}
+.combo-box .list-cell , .combo-box{
+    /*-fx-background: white;
+    -fx-background-color: #222;
+    -fx-text-fill: white;
+}
+.combo-box .list-cell:hover, .combo-box:hover{
+    -fx-background-color: #7a7a7a;
+    -fx-text-fill: #FFF;
+}*/
+
+.dialog{
+    -fx-background-color: #222;
+}
+.dialog > *.button-bar > *.container{
+    -fx-background-color: #222;
+}
+.dialog > *.label.content{
+    /*-fx-font-size: 14px;
+    -fx-font-weight: bold;*/
+    -fx-text-fill: #FFF;
+}
+.dialog:header *.header-panel{
+    -fx-background-color: #222;
+}
+.dialog:header *.header-panel *.label{
+    -fx-fill: #FFF;
+}
