@@ -22,9 +22,11 @@ and open the template in the editor.
 .oButton{
     -fx-background-color: #222;
     -fx-text-fill: #FFF;
+    -fx-background-radius: 0
 }
 .oButton:hover{
     -fx-background-color: #4e4e4e;
+    -fx-background-radius: 0
 }
 
 .forumTextField{
@@ -36,6 +38,7 @@ and open the template in the editor.
     -fx-background-color: #4e4e4e;
     -fx-highlight-text-fill: #FFF;
     -fx-text-fill: #FFF;
+    -fx-background-radius: 0
 }
 
 .loginMeptunLabel{
@@ -70,12 +73,15 @@ and open the template in the editor.
     -fx-background-color: #222;
     -fx-text-fill: #FFF;
     -fx-font-size: 15px;
+    -fx-background-radius: 0
 }
 .sideMenuButtons:hover{
     -fx-background-color: #4e4e4e;
+    -fx-background-radius: 0
 }
 .sideMenuButtons:focused{
     -fx-background-color: #121212;
+    -fx-background-radius: 0
 }
 
 .topMenuLabel{
@@ -87,9 +93,11 @@ and open the template in the editor.
 .topMenuButtons{
     -fx-background-color: #222;
     -fx-text-fill: #FFF;
+    -fx-background-radius: 0
 }
 .topMenuButtons:hover{
     -fx-background-color: #4e4e4e;
+    -fx-background-radius: 0
 }
 
 .grid-view{
@@ -217,10 +225,19 @@ scroll-bar:horizontal .track, .scroll-bar:vertical .track{
 }
 .dialog-pane > .content {
     -fx-padding: 0.833em; /* 10 */
+    -fx-background-radius: 0
+}
+.dialog-pane > .content > .text-area{
+     -fx-control-inner-background:#222222; 
+    -fx-background-color: #4e4e4e;
+    -fx-highlight-text-fill: #FFF;
+    -fx-text-fill: #FFF;
+    -fx-background-radius: 0
 }
 .dialog-pane > .content > .combo-box, .dialog-pane > .content > .combo-box .list-view, .dialog-pane > .content > .text-field{
     -fx-background-color: #222;
     -fx-text-fill:#FFF;
+    -fx-background-radius: 0
 }
 .dialog-pane:no-header .graphic-container {
     -fx-padding: 0.833em 0 0 0.833em; /* 10px 0px 0px 10px */
@@ -247,6 +264,7 @@ scroll-bar:horizontal .track, .scroll-bar:vertical .track{
 .dialog-pane > .button-bar> .container > .button{
     -fx-background-color: #222222;
     -fx-text-fill: #FFF;
+    -fx-background-radius: 0
 }
 .dialog-pane > .button-bar> .container > .button:hover{
     -fx-background-color: #4e4e4e;
