@@ -186,6 +186,13 @@ public class scene1Controller implements Initializable {
             }
         }
     }
+    void throwAlert(Alert.AlertType at,String title ,String headertext, String contextText){
+        Alert a = new Alert(at);
+        a.setTitle(title);
+        a.setHeaderText(headertext);
+        a.setContentText(contextText);
+        a.show();
+    }
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Menu Buttons">
@@ -353,10 +360,67 @@ public class scene1Controller implements Initializable {
 
         Optional<Pair<String, String>> result = dialog.showAndWait();
     }
-   @FXML void registerExamPressed(){}
+   @FXML void registerExamPressed(){
+       
+   }
    @FXML void deRegisterExamPressed(){
     }
    @FXML void messageTeacherPressed(){
+       Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.setTitle("Send Email");
+        dialog.setHeaderText("Send emal to teacher");
+        ButtonType send = new ButtonType("Send", ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(send, ButtonType.CANCEL);
+        dialog.getDialogPane().setPrefSize(600, 500);
+        if(containerPane.getStylesheets().get(0).equals("/styles/Style-lightMode.css")){
+            dialog.getDialogPane().getStylesheets().clear();
+            dialog.getDialogPane().getStylesheets().add("/styles/Style-lightMode.css");
+        }
+        else if(containerPane.getStylesheets().get(0).equals("/styles/Style-darkMode.css")){
+            dialog.getDialogPane().getStylesheets().clear();
+            dialog.getDialogPane().getStylesheets().add("/styles/Style-darkMode.css");
+        }
+        TextArea emailbody = new TextArea();
+        emailbody.setPromptText("Body");
+        emailbody.setPrefSize(550, 300);
+        TextField emailSubject = new TextField();
+        emailSubject.setPromptText("Subject");
+        emailSubject.setPrefSize(550, 30);
+        
+        StudentDAO sDAO = new JPAStudentDAO();
+        List<Student> l = sDAO.listStudents();
+        TextField emailSender = new TextField();
+        String getEmail = "";
+        for(int i=0;i<l.size();i++){
+            if(l.get(i).getMeptunAccount().getUsername().equals(usernameField.getText()) && l.get(i).getMeptunAccount().getPassword().equals(passwordField.getText())){
+             getEmail = l.get(i).getEmail();   
+            }
+        }
+        emailSender.setText(getEmail);
+        emailSender.setPrefSize(550, 30);
+        ComboBox teachersCombo = new ComboBox();
+        teachersCombo.setPrefSize(580, 30);
+        if(teachersTable.getSelectionModel().getSelectedItem() != null)
+            teachersCombo.getItems().add(teachersTable.getSelectionModel().getSelectedItem().getEmail());
+        else
+            throwAlert(Alert.AlertType.WARNING, "Error sending email", "Please select a teacher", null);
+        teachersCombo.getSelectionModel().selectFirst();
+        VBox vbox = new VBox(teachersCombo,emailSender,emailSubject,emailbody);
+        vbox.setPrefSize(600, 490);
+        vbox.setSpacing(5);
+        dialog.getDialogPane().setContent(vbox);
+
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == send){ 
+                    
+                }
+                if(dialogButton == ButtonType.CANCEL){
+                    //
+                }
+                return null;
+            });
+
+        Optional<Pair<String, String>> result = dialog.showAndWait();
     }
    @FXML void editDataButtonPressed(){
        Dialog<Pair<String, String>> dialog = new Dialog<>();
@@ -423,10 +487,7 @@ public class scene1Controller implements Initializable {
                                 emailLabel.setText(emailTextField.getText());
                             }
                             else{
-                                Alert a = new Alert(Alert.AlertType.ERROR);
-                                a.setHeaderText("Email texfield is empty");
-                                a.setContentText("Email textfield can't be empty");
-                                a.show();
+                                throwAlert(Alert.AlertType.ERROR, "Email error","Email texfield is empty", "Email textfield can't be empty");
                             }
                         }
                     }
