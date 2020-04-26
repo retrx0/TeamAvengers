@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.meptun.controller;
 
 import com.sun.javafx.css.StyleManager;
@@ -73,11 +68,6 @@ import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import javafx.util.Pair;
 
-/**
- * FXML Controller class
- *
- * @author student
- */
 public class scene1Controller implements Initializable {
     
     //<editor-fold defaultstate="collapsed" desc="FXML Variables">
@@ -283,7 +273,7 @@ public class scene1Controller implements Initializable {
         dialog.setHeaderText("Select course to register");
         ButtonType register = new ButtonType("Register", ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(register, ButtonType.CANCEL);
-        dialog.getDialogPane().setPrefSize(500, 400);
+        dialog.getDialogPane().setPrefSize(500, 200);
         if(containerPane.getStylesheets().get(0).equals("/styles/Style-lightMode.css")){
             dialog.getDialogPane().getStylesheets().clear();
             dialog.getDialogPane().getStylesheets().add("/styles/Style-lightMode.css");
@@ -292,7 +282,42 @@ public class scene1Controller implements Initializable {
             dialog.getDialogPane().getStylesheets().clear();
             dialog.getDialogPane().getStylesheets().add("/styles/Style-darkMode.css");
         }
-        GridPane grid = new GridPane();
+        
+        VBox vbox =new VBox();
+        vbox.setPrefSize(400, 200);
+        vbox.setLayoutX(50);
+        vbox.setLayoutY(100);
+        
+        CourseDAO cdao = new JPACourseDAO();
+        ObservableList ol = FXCollections.observableArrayList();
+        
+        List l = cdao.listCourses();
+        
+        for(int i=0;i<l.size();i++){
+            ol.add(l.get(i));
+        }
+        ComboBox coursesCombo = new ComboBox(ol);
+        coursesCombo.getSelectionModel().selectFirst();
+        //coursesCombo.setLayoutX(50);
+        //coursesCombo.setLayoutY(120);
+        coursesCombo.setPrefSize(400, 40);
+        vbox.getChildren().add(coursesCombo);
+        
+        dialog.getDialogPane().setContent(vbox);
+
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == register){ 
+                    System.out.println(coursesCombo.getSelectionModel().getSelectedItem().toString());
+                }
+                if(dialogButton == ButtonType.CANCEL){
+                    //
+                }
+                return null;
+            });
+
+        Optional<Pair<String, String>> result = dialog.showAndWait();
+        
+        /*GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(10, 10, 10, 10));
@@ -308,7 +333,7 @@ public class scene1Controller implements Initializable {
                 return null;
             });
 
-        Optional<Pair<String, String>> result = dialog.showAndWait();
+        Optional<Pair<String, String>> result = dialog.showAndWait();*/
     }
    //</editor-fold>
    
@@ -368,12 +393,12 @@ public class scene1Controller implements Initializable {
    
     //<editor-fold defaultstate="collapsed" desc="Register Exam">
    @FXML void registerExamPressed(){
-               Dialog<Pair<String, String>> dialog = new Dialog<>();
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Exam Registration");
         dialog.setHeaderText("Select exam to register");
         ButtonType register = new ButtonType("Register", ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(register, ButtonType.CANCEL);
-        dialog.getDialogPane().setPrefSize(500, 400);
+        dialog.getDialogPane().setPrefSize(500, 200);
         if(containerPane.getStylesheets().get(0).equals("/styles/Style-lightMode.css")){
             dialog.getDialogPane().getStylesheets().clear();
             dialog.getDialogPane().getStylesheets().add("/styles/Style-lightMode.css");
@@ -382,7 +407,41 @@ public class scene1Controller implements Initializable {
             dialog.getDialogPane().getStylesheets().clear();
             dialog.getDialogPane().getStylesheets().add("/styles/Style-darkMode.css");
         }
-        GridPane grid = new GridPane();
+        
+        VBox vbox =new VBox();
+        vbox.setPrefSize(400, 200);
+        vbox.setLayoutX(50);
+        vbox.setLayoutY(100);
+        
+        ExamsDAO edao = new JPAExamsDAO();
+        ObservableList ol = FXCollections.observableArrayList();
+        List l = edao.listExams();
+        
+        for(int i=0;i<l.size();i++){
+            ol.add(l.get(i));
+        }
+        ComboBox examCombo = new ComboBox(ol);
+        examCombo.getSelectionModel().selectFirst();
+        //examCombo.setLayoutX(50);
+        //examCombo.setLayoutY(120);
+        examCombo.setPrefSize(400, 40);
+        vbox.getChildren().add(examCombo);
+        
+        dialog.getDialogPane().setContent(vbox);
+
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == register){ 
+                    System.out.println(examCombo.getSelectionModel().getSelectedItem().toString());
+                }
+                if(dialogButton == ButtonType.CANCEL){
+                    //
+                }
+                return null;
+            });
+
+        Optional<Pair<String, String>> result = dialog.showAndWait();
+        
+        /*GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(10, 10, 10, 10));
@@ -398,7 +457,7 @@ public class scene1Controller implements Initializable {
                 return null;
             });
 
-        Optional<Pair<String, String>> result = dialog.showAndWait();
+        Optional<Pair<String, String>> result = dialog.showAndWait();*/
     }  
    //</editor-fold>
    
@@ -594,11 +653,13 @@ public class scene1Controller implements Initializable {
    }
    //</editor-fold>
    
+    //<editor-fold defaultstate="collapsed" desc="Message List View">
    @FXML void messageListViewMouceClicked(){
        messageTextArea.clear();
        messageTextArea.appendText(messageListView.getSelectionModel().getSelectedItem().getMessageBody());
    }
-
+//</editor-fold>
+   
     //<editor-fold defaultstate="collapsed" desc="Forum">
     @FXML void forumButtonPressed(){
         showNode(menuStackPane, forumPane);
