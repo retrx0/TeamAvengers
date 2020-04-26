@@ -1,5 +1,6 @@
 package com.meptun.controller;
 
+    //<editor-fold defaultstate="collapsed" desc="Imports">
 import com.sun.javafx.css.StyleManager;
 import com.meptun.app.MainApp;
 import com.meptun.extras.ShakeTransition;
@@ -67,6 +68,7 @@ import javafx.util.Duration;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import javafx.util.Pair;
+//</editor-fold>
 
 public class scene1Controller implements Initializable {
     
