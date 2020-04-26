@@ -160,7 +160,7 @@
                                     </TableView>
                                     <VBox layoutX="527.0" layoutY="130.0" prefHeight="274.0" prefWidth="89.0" AnchorPane.rightAnchor="14.0">
                                        <children>
-                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerExamPressed" prefHeight="50.0" styleClass="oButton" text="Regiter" />
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerExamPressed" prefHeight="50.0" styleClass="oButton" text="Register" />
                                           <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deRegisterExamPressed" prefHeight="50.0" styleClass="oButton" text="Deregister" />
                                        </children>
                                     </VBox>
