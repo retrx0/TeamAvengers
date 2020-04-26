@@ -275,7 +275,8 @@ public class scene1Controller implements Initializable {
         usernameField.setStyle("-fx-text-box-border: transparent");
     }
 //</editor-fold>
-    
+
+    //<editor-fold defaultstate="collapsed" desc="Register Course">
    @FXML void registerCoursePressed(){
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Course Registration");
@@ -309,6 +310,9 @@ public class scene1Controller implements Initializable {
 
         Optional<Pair<String, String>> result = dialog.showAndWait();
     }
+   //</editor-fold>
+   
+    //<editor-fold defaultstate="collapsed" desc="DeRegister Course">
    @FXML void deRegisterCoursePressed(){
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Course Deregistration");
@@ -360,11 +364,20 @@ public class scene1Controller implements Initializable {
 
         Optional<Pair<String, String>> result = dialog.showAndWait();
     }
+   //</editor-fold>
+   
+    //<editor-fold defaultstate="collapsed" desc="Register Exam">
    @FXML void registerExamPressed(){
        
    }
+   //</editor-fold>
+   
+    //<editor-fold defaultstate="collapsed" desc="DeRegister Exam">
    @FXML void deRegisterExamPressed(){
     }
+   //</editor-fold>
+   
+    //<editor-fold defaultstate="collapsed" desc="Message Teacher">
    @FXML void messageTeacherPressed(){
        Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Send Email");
@@ -422,6 +435,9 @@ public class scene1Controller implements Initializable {
 
         Optional<Pair<String, String>> result = dialog.showAndWait();
     }
+   //</editor-fold>
+   
+    //<editor-fold defaultstate="collapsed" desc="Edit data button">
    @FXML void editDataButtonPressed(){
        Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Edit data");
@@ -497,6 +513,8 @@ public class scene1Controller implements Initializable {
             
         Optional<Pair<String, String>> result = dialog.showAndWait();
    }
+   //</editor-fold>
+   
    @FXML void messageListViewMouceClicked(){
        messageTextArea.clear();
        messageTextArea.appendText(messageListView.getSelectionModel().getSelectedItem().getMessageBody());
