@@ -368,12 +368,91 @@ public class scene1Controller implements Initializable {
    
     //<editor-fold defaultstate="collapsed" desc="Register Exam">
    @FXML void registerExamPressed(){
-       
-   }
+               Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.setTitle("Exam Registration");
+        dialog.setHeaderText("Select exam to register");
+        ButtonType register = new ButtonType("Register", ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(register, ButtonType.CANCEL);
+        dialog.getDialogPane().setPrefSize(500, 400);
+        if(containerPane.getStylesheets().get(0).equals("/styles/Style-lightMode.css")){
+            dialog.getDialogPane().getStylesheets().clear();
+            dialog.getDialogPane().getStylesheets().add("/styles/Style-lightMode.css");
+        }
+        else if(containerPane.getStylesheets().get(0).equals("/styles/Style-darkMode.css")){
+            dialog.getDialogPane().getStylesheets().clear();
+            dialog.getDialogPane().getStylesheets().add("/styles/Style-darkMode.css");
+        }
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(10, 10, 10, 10));
+        
+        dialog.getDialogPane().setContent(grid);
+
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == register){ 
+                }
+                if(dialogButton == ButtonType.CANCEL){
+                    //
+                }
+                return null;
+            });
+
+        Optional<Pair<String, String>> result = dialog.showAndWait();
+    }  
    //</editor-fold>
    
     //<editor-fold defaultstate="collapsed" desc="DeRegister Exam">
    @FXML void deRegisterExamPressed(){
+               Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.setTitle("Exam Deregistration");
+        dialog.setHeaderText("Select exam to deregister");
+        
+        ButtonType deregister = new ButtonType("Deregister", ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(deregister, ButtonType.CANCEL);
+        dialog.getDialogPane().setPrefSize(500, 200);
+        
+        if(containerPane.getStylesheets().get(0).equals("/styles/Style-lightMode.css")){
+            dialog.getDialogPane().getStylesheets().clear();
+            dialog.getDialogPane().getStylesheets().add("/styles/Style-lightMode.css");
+        }
+        else if(containerPane.getStylesheets().get(0).equals("/styles/Style-darkMode.css")){
+            dialog.getDialogPane().getStylesheets().clear();
+            dialog.getDialogPane().getStylesheets().add("/styles/Style-darkMode.css");
+        }
+        VBox vbox =new VBox();
+        vbox.setPrefSize(400, 200);
+        vbox.setLayoutX(50);
+        vbox.setLayoutY(100);
+        
+        ExamsDAO edao = new JPAExamsDAO();
+        ObservableList ol = FXCollections.observableArrayList();
+        
+        List l = edao.listExams();
+        
+        for(int i=0;i<l.size();i++){
+            ol.add(l.get(i));
+        }
+        ComboBox examCombo = new ComboBox(ol);
+        examCombo.getSelectionModel().selectFirst();
+        //examCombo.setLayoutX(50);
+        //examCombo.setLayoutY(120);
+        examCombo.setPrefSize(400, 40);
+        vbox.getChildren().add(examCombo);
+        
+        dialog.getDialogPane().setContent(vbox);
+
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == deregister){ 
+                    System.out.println(examCombo.getSelectionModel().getSelectedItem().toString());
+                }
+                if(dialogButton == ButtonType.CANCEL){
+                    //
+                }
+                return null;
+            });
+
+        Optional<Pair<String, String>> result = dialog.showAndWait();
     }
    //</editor-fold>
    
