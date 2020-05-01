@@ -61,10 +61,10 @@ public class MainApp extends Application {
         CourseDAO cDAO = new JPACourseDAO();
         MeptunAccountDAO maDAO = new JPAMeptunAccountDAO();
         //Students Objects
-        Student me = new Student("PCGBP2","Abdulrahman Iliyasu", "abdulrahmaniliyasu86@gmail.com", "Computer Science Eng", 30, LocalDate.now());
-        Student s2 = new  Student("CR97JH","Veer", "veer@gmail.com", "Computer Science Eng", 35, LocalDate.now());
-        Student s3 = new Student("GHVSL8","Tolu", "tolu@gmail.com", "Computer Science Eng", 30, LocalDate.now());
-        Student s4 = new Student("TYFVG5","Mav", "mav@gmail.com", "Computer Science Eng",30, LocalDate.now());
+        Student me = new Student("PCGBP2","Abdulrahman Iliyasu", "illoabdulrahmansoftdev2020@gmail.com", "Computer Science Eng", 30, LocalDate.now());
+        Student s2 = new  Student("CR97JH","Veer", "veersinghsoftdev2020@gmail.com", "Computer Science Eng", 35, LocalDate.now());
+        Student s3 = new Student("GHVSL8","Tolu", "adewuyitoluwaminisoftdev2020@gmail.com", "Computer Science Eng", 30, LocalDate.now());
+        Student s4 = new Student("TYFVG5","Mav", "mafarangonidzashesoftdev2020@gmail.com", "Computer Science Eng",30, LocalDate.now());
         //Meptun Accounts
         MeptunAccount m = new MeptunAccount("PCGBP2","retro", "password");
         MeptunAccount m2 = new MeptunAccount("CR97JH", "veer", "password");
