@@ -71,25 +71,26 @@ public class MainApp extends Application {
         MeptunAccount m3 = new MeptunAccount("GHVSL8", "tolu", "tolu1");
         MeptunAccount m4 = new MeptunAccount("TYFVG5", "mav", "mav1");
         //Teacher Objects
-        Teacher kocsis = new Teacher("Kocsis Gergely", "Soft Dev for Eng", "kocicsg@gmail.com");
-        Teacher imrev = new Teacher("Imre Varga", "System Programming", "imreVarga@gmail.com");
-        Teacher tothl = new Teacher("Toth lazlo", "Control Systems", "tothl@gmail.com");
+        Teacher kocsis = new Teacher("IK-KG","Kocsis Gergely", "Soft Dev for Eng", "kocicsg@gmail.com");
+        Teacher imrev = new Teacher("Ik-IM","Imre Varga", "System Programming", "imreVarga@gmail.com");
+        Teacher tothl = new Teacher("IK-TL","Toth laszlo", "Control Systems", "tothl@gmail.com");
         //saving teachers to DB
         tDAO.saveTeacher(kocsis);
         tDAO.saveTeacher(imrev);
         tDAO.saveTeacher(tothl);
+        
         //Course Objects
-        Course sdfe = new Course( "IK-SDFE","Soft-Dev for Eng", CourseType.SEMINAR);
-        Course cs = new Course("IK-CSFE", "Control Systems", CourseType.SEMINAR);
-        Course sp = new Course("IK-SPFE","System Programming", CourseType.SEMINAR);
+        Course sdfe = new Course( "IK-SDFE","Soft-Dev for Eng", CourseType.SEMINAR,3);
+        Course cs = new Course("IK-CSFE", "Control Systems", CourseType.SEMINAR,6);
+        Course sp = new Course("IK-SPFE","System Programming", CourseType.SEMINAR,3);
         //saving courses to DB
         cDAO.saveCourse(sdfe);
         cDAO.saveCourse(cs);
         cDAO.saveCourse(sp);
         //Exams
-        Exams e1 =  new Exams("EX-SDFE","IK-201", LocalDate.now(), 20);
-        Exams e2 =  new Exams("EX-CSFE","IK-205", LocalDate.now(), 20);
-        Exams e3 =  new Exams("EX-SPFE","IK-206", LocalDate.now(), 20);
+        Exams e1 =  new Exams("EX-SDFE","IK-201", LocalDate.now(), 20,"Kocsis Gergely");
+        Exams e2 =  new Exams("EX-CSFE","IK-205", LocalDate.now(), 20,"Imre Varga");
+        Exams e3 =  new Exams("EX-SPFE","IK-206", LocalDate.now(), 20,"Toth Laszlo");
         //saving exams to DB
         eDAO.saveExam(e1);
         eDAO.saveExam(e2);

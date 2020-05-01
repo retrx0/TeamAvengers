@@ -22,15 +22,24 @@ import org.hibernate.annotations.Generated;
 @Table(name = "Teachers")
 public class Teacher implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    int id;
+    String id;
     @Column(name = "name")
     private String name;
     @Column(name = "SubjectName")
     private String subjectName;
     @Column(name = "email")
     private String email;
+
+    
+    
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     
     public Teacher() {
     }
@@ -59,7 +68,8 @@ public class Teacher implements Serializable{
         this.email = email;
     }
 
-    public Teacher(String name, String subjectName, String email) {
+    public Teacher(String id,String name, String subjectName, String email) {
+        this.id = id;
         this.name = name;
         this.subjectName = subjectName;
         this.email = email;

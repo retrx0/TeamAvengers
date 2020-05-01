@@ -3,6 +3,7 @@ package com.meptun.controller;
     //<editor-fold defaultstate="collapsed" desc="Imports">
 import com.sun.javafx.css.StyleManager;
 import com.meptun.app.MainApp;
+import com.meptun.extras.EmailUtil;
 import com.meptun.extras.ShakeTransition;
 import com.meptun.hibernate.CourseDAO;
 import com.meptun.hibernate.ExamsDAO;
@@ -21,6 +22,7 @@ import com.meptun.models.Exams;
 import com.meptun.models.Message;
 import com.meptun.models.MessageListCell;
 import com.meptun.models.Teacher;
+import com.sun.javafx.PlatformUtil;
 import java.awt.PageAttributes;
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +30,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,6 +71,8 @@ import javafx.util.Duration;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import javafx.util.Pair;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 //</editor-fold>
 
 public class scene1Controller implements Initializable {
@@ -202,7 +207,7 @@ public class scene1Controller implements Initializable {
         coursesTable.setItems(ol);
         showNode(menuStackPane, coursesPane);
     }
-       @FXML void messagesButtonPressed(){
+    @FXML void messagesButtonPressed(){
        showNode(menuStackPane, messagesPane);
    }
     @FXML void homeButtonPressed() {
@@ -519,9 +524,10 @@ public class scene1Controller implements Initializable {
    
     //<editor-fold defaultstate="collapsed" desc="Message Teacher">
    @FXML void messageTeacherPressed(){
+       
        Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Send Email");
-        dialog.setHeaderText("Send emal to teacher");
+        dialog.setHeaderText("Send Email To Teacher");
         ButtonType send = new ButtonType("Send", ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(send, ButtonType.CANCEL);
         dialog.getDialogPane().setPrefSize(600, 500);
@@ -551,22 +557,75 @@ public class scene1Controller implements Initializable {
         }
         emailSender.setText(getEmail);
         emailSender.setPrefSize(550, 30);
-        ComboBox teachersCombo = new ComboBox();
-        teachersCombo.setPrefSize(580, 30);
+        TextField teachersField = new TextField();
+        teachersField.setPrefSize(580, 30);
         if(teachersTable.getSelectionModel().getSelectedItem() != null)
-            teachersCombo.getItems().add(teachersTable.getSelectionModel().getSelectedItem().getEmail());
-        else
-            throwAlert(Alert.AlertType.WARNING, "Error sending email", "Please select a teacher", null);
-        teachersCombo.getSelectionModel().selectFirst();
-        VBox vbox = new VBox(teachersCombo,emailSender,emailSubject,emailbody);
+            teachersField.setText(teachersTable.getSelectionModel().getSelectedItem().getEmail());
+        VBox vbox = new VBox(teachersField,emailSender,emailSubject,emailbody);
         vbox.setPrefSize(600, 490);
         vbox.setSpacing(5);
         dialog.getDialogPane().setContent(vbox);
 
             dialog.setResultConverter(dialogButton -> {
                 if (dialogButton == send){ 
+                    String smtpHostServer = "smtp.gmail.com";
+                    String emailID = teachersField.getText();
+	    
+	  Properties props = System.getProperties();
+	  props.put("mail.smtp.host", smtpHostServer);
+                    props.put("mail.smtp.auth", "true");
+                    props.put("mail.debug", "false");
+                    props.put("mail.smtp.port", "587");
+                    props.put("mail.smtp.starttls.enable","true");
                     
-                }
+                    Dialog<String> dialog2 = new Dialog<>();
+                        if(containerPane.getStylesheets().get(0).equals("/styles/Style-lightMode.css")){
+                            dialog2.getDialogPane().getStylesheets().clear();
+                            dialog2.getDialogPane().getStylesheets().add("/styles/Style-lightMode.css");
+                        }
+                        else if(containerPane.getStylesheets().get(0).equals("/styles/Style-darkMode.css")){
+                            dialog2.getDialogPane().getStylesheets().clear();
+                            dialog2.getDialogPane().getStylesheets().add("/styles/Style-darkMode.css");
+                        }
+                    dialog2.setTitle("Email Password");
+                    dialog2.setHeaderText("Type Your Email Password");
+                    ButtonType done = new ButtonType("Done", ButtonData.OK_DONE);
+                    dialog2.getDialogPane().getButtonTypes().addAll(done, ButtonType.CANCEL);
+                    dialog2.getDialogPane().setPrefSize(250, 150);
+                    PasswordField emailPasswordField = new PasswordField();
+                    VBox vb = new VBox(emailPasswordField);
+                    vb.setPrefSize(250, 100);
+                    dialog2.getDialogPane().setContent(vb);
+                    dialog2.setResultConverter(ans -> {
+                        if (ans == done){
+                            return emailPasswordField.getText();
+                        }
+                        if(ans == ButtonType.CANCEL){
+                            
+                        }
+                        return null;
+                    });
+                    Optional<String> res = dialog2.showAndWait();
+                    try{
+                        if(res.isPresent()){
+                            Session session = Session.getInstance(props,new javax.mail.Authenticator() {
+                                @Override
+                                protected PasswordAuthentication getPasswordAuthentication() {
+                                    return new PasswordAuthentication(emailSender.getText(), res.get());
+                                }
+                            });
+                            session.setDebug(true);
+                            if(!teachersField.getText().isEmpty())
+                                EmailUtil.sendEmail(session, emailID,emailSubject.getText(), emailbody.getText(),emailSender.getText());
+                            }
+                            else
+                                throwAlert(Alert.AlertType.ERROR, "Error", "Recipient Email Address Invalid", "Invalid recipient address, Please check it and try again");
+                        }
+                    catch(Exception e){
+                        throwAlert(Alert.AlertType.ERROR, "Error", "Could'nt Send Email","Something Went Wrong");
+                        e.printStackTrace();
+                    }
+                    }
                 if(dialogButton == ButtonType.CANCEL){
                     //
                 }
@@ -688,14 +747,15 @@ public class scene1Controller implements Initializable {
         usernameField.requestFocus();
         showNode(menuStackPane, homePane);
        messageListView.setCellFactory((ListView<Message> listView) -> new MessageListCell());
-       Message m1 = new Message("Neptun", "Abdul", "Soft Dev for Eng", LocalDate.now(), "Well done team Avengers, your project is do far the best, keep it up, you've so far shown that you're really good and you can really work hard.");
-       Message m2 = new Message("Apple", "Abdul", "Congratulations!", LocalDate.now(), "This is a test message, so if you come across it either ignore it or just be imprerssed by the developers, thank you for reading"
-               + "This is a test message, so if you come across it either ignore it or just be imprerssed by the developers, thank you for reading This is a test message, so if you come across it either ignore it or just be imprerssed by the developers, thank you for reading"
-               + "This is a test message, so if you come across it either ignore it or just be imprerssed by the developers, thank you for reading"
+       Message m1 = new Message("Meptun", "Student", "Soft Dev for Eng", LocalDate.now(), "Well done team Avengers, your project is do far the best, keep it up, you've so far shown that you're really good and you can really work hard.");
+       Message m2 = new Message("Meptun", "Student", "Congratulations!", LocalDate.now(), "Hello world, hi. This is a test for messages don't waste your time reading it, well it seems your are already wasting your time reading it. Well good luck then."
+       );
+       Message m3 = new Message("Kocics Gergely", "Student", "Congratulations!", LocalDate.now(), "Hello world, hi. This is a test for messages don't waste your time reading it, well it seems your are already wasting your time reading it. Well good luck then."
        );
        ObservableList<Message> messageObservableList = FXCollections.observableArrayList();
        messageObservableList.add(m2);
        messageObservableList.add(m1);
+       messageObservableList.add(m3);
        messageListView.getItems().addAll(messageObservableList);
        messageTextArea.appendText(messageObservableList.get(0).getMessageBody());
         // TODO

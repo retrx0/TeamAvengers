@@ -43,11 +43,12 @@ public class Exams implements Serializable{
     public Exams() {
     }
     
-    public Exams(String ec,String room, LocalDate dateOfExam, int headCount) {
+    public Exams(String ec,String room, LocalDate dateOfExam, int headCount,String esup) {
         this.examCode = ec;
         this.dateOfExam = dateOfExam;
         this.headCount = headCount;
         this.room = room;
+        this.examSupervisor = esup;
     }
     
     public Exams(Course course, LocalDate dateOfExam, int headCount, String room) {
@@ -104,4 +105,12 @@ public class Exams implements Serializable{
     public void setHeadCount(int headCount) {
         this.headCount = headCount;
     }
+
+    @Override
+    public String toString() {
+        return ""+course;
+    }
+    
+    
+    
 }

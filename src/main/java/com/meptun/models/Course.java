@@ -45,10 +45,11 @@ public class Course implements Serializable{
     public Course() {
     }
 
-    public Course(String courseCode, String courseName, CourseType courseType) {
+    public Course(String courseCode, String courseName, CourseType courseType,int crd) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.courseType = courseType;
+        this.courseCredits = crd;
     }
 
     public int getCourseCredits() {

@@ -188,7 +188,7 @@ scroll-bar:horizontal .track, .scroll-bar:vertical .track{
     -fx-font-size: 15px;
 }
 .list-view:focused{}
-.list-cell:filled, .list-cell:selected, .list-cell:focused, .list-cell:filled:selected {
+.list-cell:filled, .list-cell:selected, .list-cell:focused, .list-cell:filled:selected, .list-cell:filled:focused, .list-cell:selected:focused, .list-cell:filled:focus {
     -fx-background-color: #C8E1FF;
     -fx-text-fill: black;
 }
@@ -199,6 +199,9 @@ scroll-bar:horizontal .track, .scroll-bar:vertical .track{
 .list-cell:filled:hover {
     -fx-background-color: #C8E1FF;
     -fx-text-fill: #2c6d98;
+}
+.list-cell > VBox > .label{
+    -fx-text-fill: black;
 }
 
 .dialog-pane {
@@ -219,15 +222,15 @@ scroll-bar:horizontal .track, .scroll-bar:vertical .track{
     -fx-padding: 0.833em; /* 10 */
     -fx-background-radius: 0
 }
- .dialog-pane > .content > .text-area{
-    -fx-control-inner-background: #C8E1FF; 
+.dialog-pane > .content > .text-area{
+    -fx-control-inner-background: #e9f3ff; 
     -fx-background-color: #FFF;
-    -fx-highlight-text-fill: #C8E1FF;
+    -fx-highlight-text-fill: #e9f3ff;
     -fx-text-fill: #000;
     -fx-background-radius: 0
 }
 .dialog-pane > .content > .combo-box, .dialog-pane > .content > .combo-box > .list-view, .dialog-pane > .content > .text-field{
-    -fx-background-color: #C8E1FF;
+    -fx-background-color: #e9f3ff;
     -fx-background-radius: 0
 }
 .dialog-pane:no-header .graphic-container {
@@ -236,7 +239,7 @@ scroll-bar:horizontal .track, .scroll-bar:vertical .track{
 .dialog-pane:header .header-panel {
     /*-fx-padding: 0.833em 1.166em 0.833em 1.166em; *//* 10px 14px 10px 14px */
     -fx-padding: 0.833em; /* 10px */
-    -fx-background-color: #C8E1FF;
+    -fx-background-color: #e9f3ff;
     -fx-background-insets: 0, 0 0 1 0;
 }
 .dialog-pane:header .header-panel .label {

@@ -203,9 +203,16 @@ scroll-bar:horizontal .track, .scroll-bar:vertical .track{
     -fx-background-color: #222;
     -fx-font-size: 15px;
 }
+.list-cell:filled:focused{
+    -fx-background-color: #4e4e4e;
+    -fx-text-fill: #FFF;
+}
 .list-cell:filled:hover {
     -fx-background-color: #4e4e4e;
     -fx-text-fill: #FFF;
+}
+.list-cell > VBox > .label{
+    -fx-text-fill: white;
 }
 
 .dialog-pane {
@@ -236,6 +243,7 @@ scroll-bar:horizontal .track, .scroll-bar:vertical .track{
 }
 .dialog-pane > .content > .combo-box, .dialog-pane > .content > .combo-box .list-view, .dialog-pane > .content > .text-field{
     -fx-background-color: #222;
+    -fx-control-inner-background:#222222; 
     -fx-text-fill:#FFF;
     -fx-background-radius: 0
 }
