@@ -122,6 +122,11 @@ public class MainApp extends Application {
         maDAO.saveMeptunAccount(m2);
         maDAO.saveMeptunAccount(m3);
         maDAO.saveMeptunAccount(m4);
+        maDAO.saveMeptunAccount(m5);
+        maDAO.saveMeptunAccount(m6);
+        maDAO.saveMeptunAccount(m7);
+        maDAO.saveMeptunAccount(m8);
+        maDAO.saveMeptunAccount(m1);
         //setting course lecturers
         sdfe.setCourseLecturer(kocsis);
         cs.setCourseLecturer(tothl);
