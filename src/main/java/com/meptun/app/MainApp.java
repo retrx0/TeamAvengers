@@ -65,7 +65,11 @@ public class MainApp extends Application {
         Student s2 = new  Student("CR97JH","Veer", "veersinghsoftdev2020@gmail.com", "Computer Science Eng", 35, LocalDate.now());
         Student s3 = new Student("GHVSL8","Tolu", "adewuyitoluwaminisoftdev2020@gmail.com", "Computer Science Eng", 30, LocalDate.now());
         Student s4 = new Student("TYFVG5","Mav", "mafarangonidzashesoftdev2020@gmail.com", "Computer Science Eng",30, LocalDate.now());
-        Student s5 = new Student("PGVGY2", "Richard", STYLESHEET_CASPIAN, STYLESHEET_MODENA, 0, LocalDate.MIN)
+        Student s5 = new Student("PGVGY2", "Richard", "RichardMacqua@gmail.com", "Business Studies", 25, LocalDate.now());
+        Student s6 = new Student(STYLESHEET_MODENA, STYLESHEET_MODENA, STYLESHEET_CASPIAN, STYLESHEET_MODENA, 0, LocalDate.MIN);
+        Student s7 = new Student(STYLESHEET_MODENA, STYLESHEET_MODENA, STYLESHEET_CASPIAN, STYLESHEET_MODENA, 0, LocalDate.MIN);
+        Student s8 = new Student(STYLESHEET_MODENA, STYLESHEET_MODENA, STYLESHEET_CASPIAN, STYLESHEET_MODENA, 0, LocalDate.MIN);
+        Student s9 = new Student(STYLESHEET_MODENA, STYLESHEET_MODENA, STYLESHEET_CASPIAN, STYLESHEET_MODENA, 0, LocalDate.MIN);
         //Meptun Accounts
         MeptunAccount m = new MeptunAccount("PCGBP2","retro", "password");
         MeptunAccount m2 = new MeptunAccount("CR97JH", "veer", "password");
