@@ -62,20 +62,25 @@ public class MainApp extends Application {
         MeptunAccountDAO maDAO = new JPAMeptunAccountDAO();
         //Students Objects
         Student me = new Student("PCGBP2","Abdulrahman Iliyasu", "illoabdulrahmansoftdev2020@gmail.com", "Computer Science Eng", 30, LocalDate.now());
-        Student s2 = new  Student("CR97JH","Veer", "veersinghsoftdev2020@gmail.com", "Computer Science Eng", 35, LocalDate.now());
-        Student s3 = new Student("GHVSL8","Tolu", "adewuyitoluwaminisoftdev2020@gmail.com", "Computer Science Eng", 30, LocalDate.now());
+        Student s2 = new Student("CR97JH","Veer Singh", "veersinghsoftdev2020@gmail.com", "Computer Science Eng", 35, LocalDate.now());
+        Student s3 = new Student("GHVSL8","Toluwanimi Adewuyi", "adewuyitoluwaminisoftdev2020@gmail.com", "Computer Science Eng", 30, LocalDate.now());
         Student s4 = new Student("TYFVG5","Mav", "mafarangonidzashesoftdev2020@gmail.com", "Computer Science Eng",30, LocalDate.now());
-        Student s5 = new Student("PGVGY2", "Richard", "RichardMacqua@gmail.com", "Business Studies", 25, LocalDate.now());
-        Student s6 = new Student(STYLESHEET_MODENA, STYLESHEET_MODENA, STYLESHEET_CASPIAN, STYLESHEET_MODENA, 0, LocalDate.MIN);
-        Student s7 = new Student(STYLESHEET_MODENA, STYLESHEET_MODENA, STYLESHEET_CASPIAN, STYLESHEET_MODENA, 0, LocalDate.MIN);
-        Student s8 = new Student(STYLESHEET_MODENA, STYLESHEET_MODENA, STYLESHEET_CASPIAN, STYLESHEET_MODENA, 0, LocalDate.MIN);
-        Student s9 = new Student(STYLESHEET_MODENA, STYLESHEET_MODENA, STYLESHEET_CASPIAN, STYLESHEET_MODENA, 0, LocalDate.MIN);
+        Student s5 = new Student("PGVGY2", "Richard Bolton", "RichardMacqua@gmail.com", "Business Studies", 25, LocalDate.now());
+        Student s6 = new Student("QPRWX4", "Bolaji Adefarati", "Bolajifresh@gmail.com", "Music", 10, LocalDate.now());
+        Student s7 = new Student("QWERT2", "Temidire Zoltan", "Tems@gmail.com", "Architectural Science", 30, LocalDate.now());
+        Student s8 = new Student("RQYUV7", "Dina Hadad", "Dimye@gmail.com", "Medicine", 35, LocalDate.now());
+        Student s9 = new Student("VCWEY8", "Abdallah Mazak", "Abdall@gmail.com", "Chemical Eng", 25, LocalDate.now());
         //Meptun Accounts
-        MeptunAccount m = new MeptunAccount("PCGBP2","retro", "password");
+        MeptunAccount m =  new MeptunAccount("PCGBP2","retro", "password");
         MeptunAccount m2 = new MeptunAccount("CR97JH", "veer", "password");
         MeptunAccount m3 = new MeptunAccount("GHVSL8", "tolu", "tolu1");
         MeptunAccount m4 = new MeptunAccount("TYFVG5", "mav", "mav1");
-        //Teacher Objects
+        MeptunAccount m5 = new;
+        MeptunAccount m6 = new;
+        MeptunAccount m7 = new;
+        MeptunAccount m8 = new;
+        MeptunAccount m9 = new;
+         //Teacher Objects
         Teacher kocsis = new Teacher("IK-KG","Kocsis Gergely", "Soft Dev for Eng", "kocicsg@gmail.com");
         Teacher imrev = new Teacher("Ik-IM","Imre Varga", "System Programming", "imreVarga@gmail.com");
         Teacher tothl = new Teacher("IK-TL","Toth laszlo", "Control Systems", "tothl@gmail.com");
