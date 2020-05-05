@@ -21,6 +21,7 @@ import com.meptun.models.Exams;
 import com.meptun.models.Teacher;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -75,28 +76,39 @@ public class MainApp extends Application {
         MeptunAccount m2 = new MeptunAccount("CR97JH", "veer", "password");
         MeptunAccount m3 = new MeptunAccount("GHVSL8", "tolu", "tolu1");
         MeptunAccount m4 = new MeptunAccount("TYFVG5", "mav", "mav1");
-        MeptunAccount m5 = new;
-        MeptunAccount m6 = new;
-        MeptunAccount m7 = new;
-        MeptunAccount m8 = new;
-        MeptunAccount m9 = new;
+        MeptunAccount m5 = new MeptunAccount("PGVGY2", "rich", "rich1");
+        MeptunAccount m6 = new MeptunAccount("QPRWX4", "boj", "boj2");
+        MeptunAccount m7 = new MeptunAccount("QWERT2", "tems", "tem1");
+        MeptunAccount m8 = new MeptunAccount("RQYUV7", "Dina", "Dina1");
+        MeptunAccount m9 = new MeptunAccount("VCWEY8", "abs", "abs12");
          //Teacher Objects
         Teacher kocsis = new Teacher("IK-KG","Kocsis Gergely", "Soft Dev for Eng", "kocicsg@gmail.com");
-        Teacher imrev = new Teacher("Ik-IM","Imre Varga", "System Programming", "imreVarga@gmail.com");
-        Teacher tothl = new Teacher("IK-TL","Toth laszlo", "Control Systems", "tothl@gmail.com");
+        Teacher imrev =  new Teacher ("Ik-IM","Imre Varga", "System Programming", "imreVarga@gmail.com");
+        Teacher tothl =  new Teacher ("IK-TL","Toth laszlo", "Control Systems", "tothl@gmail.com");
+        Teacher dol2  =  new Teacher  ("IK-MU", "Donald Lagrer", "Music", "dol2@gmail.com");
+        Teacher rom1  =  new Teacher  ("IK-TO", "Roaman Mark", "Business Studies", "rom1@gmail.com");
+        Teacher wer1  =  new Teacher  ("IK-QE", "Werzak Rel", "Anatomy", "wer1@gmail.com");
         //saving teachers to DB
         tDAO.saveTeacher(kocsis);
         tDAO.saveTeacher(imrev);
         tDAO.saveTeacher(tothl);
-        
+        tDAO.saveTeacher(wer1);
+        tDAO.saveTeacher(rom1);
+        tDAO.saveTeacher(dol2);
         //Course Objects
         Course sdfe = new Course( "IK-SDFE","Soft-Dev for Eng", CourseType.SEMINAR,3);
         Course cs = new Course("IK-CSFE", "Control Systems", CourseType.SEMINAR,6);
         Course sp = new Course("IK-SPFE","System Programming", CourseType.SEMINAR,3);
+        Course mu = new Course("IK-MUSI", "Music", CourseType.LECTURE, 2);
+        Course bu = new Course("IK-BUT", "Buisness Studies", CourseType.LECTURE, 5);
+        Course ay = new Course("IK-AN", "Anatomy", CourseType.LECTURE, 6);
         //saving courses to DB
         cDAO.saveCourse(sdfe);
         cDAO.saveCourse(cs);
         cDAO.saveCourse(sp);
+        cDAO.saveCourse(ay);
+        cDAO.saveCourse(mu);
+        cDAO.saveCourse(bu);
         //Exams
         Exams e1 =  new Exams("EX-SDFE","IK-201", LocalDate.now(), 20,"Kocsis Gergely");
         Exams e2 =  new Exams("EX-CSFE","IK-205", LocalDate.now(), 20,"Imre Varga");
