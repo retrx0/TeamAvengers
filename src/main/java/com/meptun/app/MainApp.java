@@ -70,7 +70,7 @@ public class MainApp extends Application {
         Student s6 = new Student("QPRWX4", "Bolaji Adefarati", "Bolajifresh@gmail.com", "Music", 10, LocalDate.now());
         Student s7 = new Student("QWERT2", "Temidire Zoltan", "Tems@gmail.com", "Architectural Science", 30, LocalDate.now());
         Student s8 = new Student("RQYUV7", "Dina Hadad", "Dimye@gmail.com", "Medicine", 35, LocalDate.now());
-        Student s9 = new Student("VCWEY8", "Abdallah Mazak", "Abdall@gmail.com", "Chemical Eng", 25, LocalDate.now());
+        Student s1 = new Student("VCWEY8", "Abdallah Mazak", "Abdall@gmail.com", "Chemical Eng", 25, LocalDate.now());
         //Meptun Accounts
         MeptunAccount m =  new MeptunAccount("PCGBP2","retro", "password");
         MeptunAccount m2 = new MeptunAccount("CR97JH", "veer", "password");
@@ -80,7 +80,7 @@ public class MainApp extends Application {
         MeptunAccount m6 = new MeptunAccount("QPRWX4", "boj", "boj2");
         MeptunAccount m7 = new MeptunAccount("QWERT2", "tems", "tem1");
         MeptunAccount m8 = new MeptunAccount("RQYUV7", "Dina", "Dina1");
-        MeptunAccount m9 = new MeptunAccount("VCWEY8", "abs", "abs12");
+        MeptunAccount m1 = new MeptunAccount("VCWEY8", "abs", "abs12");
          //Teacher Objects
         Teacher kocsis = new Teacher("IK-KG","Kocsis Gergely", "Soft Dev for Eng", "kocicsg@gmail.com");
         Teacher imrev =  new Teacher ("Ik-IM","Imre Varga", "System Programming", "imreVarga@gmail.com");
@@ -142,11 +142,21 @@ public class MainApp extends Application {
         s2.setMeptunAccount(m2);
         s3.setMeptunAccount(m3);
         s4.setMeptunAccount(m4);
+        s5.setMeptunAccount(m5);
+        s6.setMeptunAccount(m6);
+        s7.setMeptunAccount(m7);
+        s8.setMeptunAccount(m8);
+        s1.setMeptunAccount(m1);
         //saving students
         sDAO.saveStudent(me);
         sDAO.saveStudent(s2);
         sDAO.saveStudent(s3);
         sDAO.saveStudent(s4);
+        sDAO.saveStudent(s5);
+        sDAO.saveStudent(s6);
+        sDAO.saveStudent(s7);
+        sDAO.saveStudent(s8);
+        sDAO.saveStudent(s1);
         List<Student> l = sDAO.listStudents();
         System.out.println("list "+ l);
         
