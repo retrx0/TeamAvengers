@@ -42,7 +42,6 @@ public class Exams implements Serializable{
 
     public Exams() {
     }
-    
     public Exams(String ec,String room, LocalDate dateOfExam, int headCount,String esup) {
         this.examCode = ec;
         this.dateOfExam = dateOfExam;
@@ -110,7 +109,5 @@ public class Exams implements Serializable{
     public String toString() {
         return ""+course;
     }
-    
-    
     
 }
