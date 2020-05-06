@@ -120,7 +120,7 @@ public class MainApp extends Application {
         List<Student> l = sDAO.listStudents();
         System.out.println("list "+ l);
         
-        launch(args);
+        launch(args); //
     }
 
 }
