@@ -1,5 +1,6 @@
 package com.meptun.controller;
 
+
     //<editor-fold defaultstate="collapsed" desc="Imports">
 import com.sun.javafx.css.StyleManager;
 import com.meptun.app.MainApp;
@@ -740,6 +741,7 @@ public class scene1Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         containerPane.getStylesheets().clear();
         containerPane.getStylesheets().add("/styles/Style-lightMode.css");
         containerPane.setPrefWidth(800);
@@ -759,6 +761,7 @@ public class scene1Controller implements Initializable {
        messageListView.getItems().addAll(messageObservableList);
        messageTextArea.appendText(messageObservableList.get(0).getMessageBody());
         // TODO
+        
     }
     
 }
