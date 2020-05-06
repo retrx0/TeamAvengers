@@ -6,7 +6,7 @@
 package com.meptun.models;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+
 
 /**
  *
@@ -67,5 +67,4 @@ public class Message {
         this.messageBody = messageBody;
     }
       
-    
 }
