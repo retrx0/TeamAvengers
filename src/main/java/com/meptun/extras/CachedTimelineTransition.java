@@ -88,5 +88,4 @@ public class CachedTimelineTransition extends Transition{
         timeline.playFrom(Duration.seconds(d));
         timeline.stop();
     }
-    
 }

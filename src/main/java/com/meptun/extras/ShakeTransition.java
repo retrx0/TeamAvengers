@@ -136,6 +136,4 @@ public class ShakeTransition extends CachedTimelineTransition {
         setCycleDuration(Duration.seconds(1));
         setDelay(Duration.seconds(0.2));
     }
-    
-    
 }
