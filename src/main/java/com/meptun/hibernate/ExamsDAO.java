@@ -6,7 +6,6 @@
 package com.meptun.hibernate;
 
 import com.meptun.models.Exams;
-import com.meptun.models.Student;
 import java.util.List;
 
 /**
