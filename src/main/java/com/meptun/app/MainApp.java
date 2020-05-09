@@ -70,7 +70,6 @@ public class MainApp extends Application {
         tDAO.saveTeacher(kocsis);
         tDAO.saveTeacher(imrev);
         tDAO.saveTeacher(tothl);
-        
         //Course Objects
         Course sdfe = new Course( "IK-SDFE","Soft-Dev for Eng", CourseType.SEMINAR,3);
         Course cs = new Course("IK-CSFE", "Control Systems", CourseType.SEMINAR,6);
@@ -120,7 +119,6 @@ public class MainApp extends Application {
         List<Student> l = sDAO.listStudents();
         System.out.println("list "+ l);
         
-        launch(args); //
+        launch(args); 
     }
-
 }
