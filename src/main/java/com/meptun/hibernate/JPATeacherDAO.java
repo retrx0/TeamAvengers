@@ -35,7 +35,7 @@ public class JPATeacherDAO implements  TeacherDAO{
             }
         }
     }
-
+    
     @Override
     public void deleteTeacher(Teacher t) {try {
             transaction = session.beginTransaction();
@@ -66,10 +66,9 @@ public class JPATeacherDAO implements  TeacherDAO{
         Query query = session.createQuery(hql);
         return query.list();
     }
-
+    
     @Override
     public void close(){
         session.close();
-    }
-    
+    }   
 }
