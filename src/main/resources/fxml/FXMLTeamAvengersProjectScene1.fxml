@@ -24,6 +24,46 @@
    <children>
       <StackPane fx:id="upperStackPane" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <AnchorPane fx:id="loginPane" prefHeight="600.0" prefWidth="750.0">
+               <children>
+                  <AnchorPane layoutX="230.0" onKeyPressed="#loginKeyPressed" prefHeight="600.0" prefWidth="520.0" styleClass="loginRightPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TextField fx:id="usernameField" layoutX="162.0" layoutY="255.0" prefHeight="33.0" prefWidth="197.0" promptText="Username" styleClass="forumTextField" />
+                        <PasswordField fx:id="passwordField" layoutX="162.0" layoutY="317.0" prefHeight="33.0" prefWidth="197.0" promptText="Password" styleClass="forumTextField" />
+                        <Label alignment="CENTER" layoutX="194.0" layoutY="195.0" prefHeight="33.0" prefWidth="133.0" styleClass="loginStudentLoginLabel" text="Student Login" textAlignment="CENTER">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="207.0" layoutY="393.0" mnemonicParsing="false" onAction="#loginButtonPressed" prefHeight="33.0" prefWidth="106.0" styleClass="loginButton" text="Login" />
+                        <Label fx:id="loginActionLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="162.0" layoutY="358.0" prefHeight="21.0" prefWidth="197.0" textAlignment="CENTER" textFill="#ae0c0c">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="85.0" fitWidth="112.0" layoutX="206.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/logo-sm.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="-1.0" prefHeight="607.0" prefWidth="233.0" styleClass="loginSidePane" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label alignment="CENTER" layoutX="28.0" layoutY="122.0" prefHeight="66.0" prefWidth="166.0" styleClass="loginMeptunLabel" text="Meptun" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="37.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="146.0" fitWidth="230.0" layoutX="7.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0">
+                           <image>
+                              <Image url="@../img/studentsPng.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="upperHome" prefHeight="600.0" prefWidth="750.0">
                <children>
                   <AnchorPane fx:id="sideMenuPane" prefHeight="600.0" prefWidth="120.0" styleClass="sideMenuPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -66,47 +106,6 @@
                      <children>
                         <StackPane fx:id="menuStackPane" prefHeight="560.0" prefWidth="630.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane fx:id="forumPane" prefHeight="200.0" prefWidth="200.0" styleClass="bPane">
-                                 <children>
-                                    <Label layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="184.0" styleClass="oLabel" text="Forum">
-                                       <font>
-                                          <Font size="40.0" />
-                                       </font>
-                                    </Label>
-                                    <TextArea fx:id="forumTextArea" editable="false" layoutX="14.0" layoutY="111.0" prefHeight="274.0" prefWidth="428.0" styleClass="forumTextArea" wrapText="true" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="111.0" />
-                                    <TextField fx:id="forumTextField" layoutX="14.0" layoutY="403.0" onKeyPressed="#forumTextFieldKeyPressed" prefHeight="33.0" prefWidth="375.0" promptText="Type here" styleClass="forumTextField" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="240.0" />
-                                    <Button fx:id="forumSendButton" layoutX="388.0" layoutY="403.0" mnemonicParsing="false" onAction="#forumSendButtonPressed" prefHeight="33.0" prefWidth="55.0" styleClass="oButton" text="Send" AnchorPane.rightAnchor="187.0" />
-                                    <VBox layoutX="477.0" layoutY="111.0" prefHeight="274.0" prefWidth="133.0" AnchorPane.rightAnchor="20.0">
-                                       <children>
-                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#forumClearChatButtonPressed" prefHeight="50.0" prefWidth="133.0" styleClass="oButton" text="Clear Chat" />
-                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" prefWidth="133.0" styleClass="oButton" text="New Discussion" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane fx:id="coursesPane" prefHeight="200.0" prefWidth="200.0" styleClass="bPane">
-                                 <children>
-                                    <Label layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="150.0" styleClass="oLabel" text="Courses" textFill="#579fcf">
-                                       <font>
-                                          <Font size="40.0" />
-                                       </font>
-                                    </Label>
-                                    <TableView fx:id="coursesTable" layoutX="7.0" layoutY="130.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="130.0">
-                                      <columns>
-                                        <TableColumn fx:id="courseID" maxWidth="120.0" minWidth="100.0" prefWidth="59.0" text="ID" />
-                                        <TableColumn fx:id="courseName" maxWidth="400.0" minWidth="200.0" prefWidth="252.0" text="Name" />
-                                          <TableColumn fx:id="courseCredits" maxWidth="50.0" minWidth="50.0" prefWidth="-1.0" resizable="false" text="Credits" />
-                                          <TableColumn fx:id="columnCourseType" maxWidth="130.0" minWidth="50.0" prefWidth="100.0" resizable="false" text="Course Type" />
-                                      </columns>
-                                    </TableView>
-                                    <VBox layoutX="527.0" layoutY="130.0" prefHeight="274.0" prefWidth="89.0" AnchorPane.rightAnchor="15.0">
-                                       <children>
-                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerCoursePressed" prefHeight="50.0" styleClass="oButton" text="Register" />
-                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deRegisterCoursePressed" prefHeight="50.0" styleClass="oButton" text="Deregister" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
                               <AnchorPane fx:id="examPane" prefHeight="200.0" prefWidth="200.0" styleClass="bPane">
                                  <children>
                                     <Label layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="150.0" styleClass="oLabel" text="Exam">
@@ -289,43 +288,48 @@
                                     </GridPane>
                                  </children>
                               </AnchorPane>
+                              <AnchorPane fx:id="forumPane" prefHeight="200.0" prefWidth="200.0" styleClass="bPane">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="184.0" styleClass="oLabel" text="Forum">
+                                       <font>
+                                          <Font size="40.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea fx:id="forumTextArea" editable="false" layoutX="14.0" layoutY="111.0" prefHeight="274.0" prefWidth="428.0" styleClass="forumTextArea" wrapText="true" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="111.0" />
+                                    <TextField fx:id="forumTextField" layoutX="14.0" layoutY="403.0" onKeyPressed="#forumTextFieldKeyPressed" prefHeight="33.0" prefWidth="375.0" promptText="Type here" styleClass="forumTextField" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="240.0" />
+                                    <Button fx:id="forumSendButton" layoutX="388.0" layoutY="403.0" mnemonicParsing="false" onAction="#forumSendButtonPressed" prefHeight="33.0" prefWidth="55.0" styleClass="oButton" text="Send" AnchorPane.rightAnchor="187.0" />
+                                    <VBox layoutX="477.0" layoutY="111.0" prefHeight="274.0" prefWidth="133.0" AnchorPane.rightAnchor="20.0">
+                                       <children>
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#forumClearChatButtonPressed" prefHeight="50.0" prefWidth="133.0" styleClass="oButton" text="Clear Chat" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="coursesPane" prefHeight="200.0" prefWidth="200.0" styleClass="bPane">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="14.0" prefHeight="58.0" prefWidth="150.0" styleClass="oLabel" text="Courses" textFill="#579fcf">
+                                       <font>
+                                          <Font size="40.0" />
+                                       </font>
+                                    </Label>
+                                    <TableView fx:id="coursesTable" layoutX="7.0" layoutY="130.0" prefHeight="300.0" prefWidth="500.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="130.0">
+                                      <columns>
+                                        <TableColumn fx:id="courseID" maxWidth="120.0" minWidth="100.0" prefWidth="59.0" text="ID" />
+                                        <TableColumn fx:id="courseName" maxWidth="400.0" minWidth="200.0" prefWidth="252.0" text="Name" />
+                                          <TableColumn fx:id="courseCredits" maxWidth="50.0" minWidth="50.0" prefWidth="-1.0" resizable="false" text="Credits" />
+                                          <TableColumn fx:id="columnCourseType" maxWidth="130.0" minWidth="50.0" prefWidth="100.0" resizable="false" text="Course Type" />
+                                      </columns>
+                                    </TableView>
+                                    <VBox layoutX="527.0" layoutY="130.0" prefHeight="274.0" prefWidth="89.0" AnchorPane.rightAnchor="15.0">
+                                       <children>
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerCoursePressed" prefHeight="50.0" styleClass="oButton" text="Add Courses" />
+                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deRegisterCoursePressed" prefHeight="50.0" styleClass="oButton" text="Deregister" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </StackPane>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="loginPane" prefHeight="600.0" prefWidth="750.0">
-               <children>
-                  <AnchorPane layoutX="230.0" onKeyPressed="#loginKeyPressed" prefHeight="600.0" prefWidth="520.0" styleClass="loginRightPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <TextField fx:id="usernameField" layoutX="162.0" layoutY="255.0" prefHeight="33.0" prefWidth="197.0" promptText="Username" styleClass="forumTextField" />
-                        <PasswordField fx:id="passwordField" layoutX="162.0" layoutY="317.0" prefHeight="33.0" prefWidth="197.0" promptText="Password" styleClass="forumTextField" />
-                        <Label alignment="CENTER" layoutX="194.0" layoutY="195.0" prefHeight="33.0" prefWidth="133.0" styleClass="loginStudentLoginLabel" text="Student Login" textAlignment="CENTER">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="207.0" layoutY="393.0" mnemonicParsing="false" onAction="#loginButtonPressed" prefHeight="33.0" prefWidth="106.0" styleClass="loginButton" text="Login" />
-                        <Label fx:id="loginActionLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="162.0" layoutY="358.0" prefHeight="21.0" prefWidth="197.0" textAlignment="CENTER" textFill="#ae0c0c">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutX="-1.0" prefHeight="607.0" prefWidth="233.0" styleClass="loginSidePane" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label alignment="CENTER" layoutX="28.0" layoutY="122.0" prefHeight="66.0" prefWidth="166.0" styleClass="loginMeptunLabel" text="Meptun" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold Italic" size="37.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="146.0" fitWidth="230.0" layoutX="7.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0">
-                           <image>
-                              <Image url="@../img/studentsPng.png" />
-                           </image>
-                        </ImageView>
                      </children>
                   </AnchorPane>
                </children>

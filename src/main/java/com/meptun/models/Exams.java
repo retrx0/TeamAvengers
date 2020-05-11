@@ -49,7 +49,14 @@ public class Exams implements Serializable{
         this.room = room;
         this.examSupervisor = esup;
     }
-    
+    public Exams(String ec,String room, LocalDate dateOfExam, int headCount,String esup,Course course) {
+        this.examCode = ec;
+        this.dateOfExam = dateOfExam;
+        this.headCount = headCount;
+        this.room = room;
+        this.examSupervisor = esup;
+        this.course = course;
+    }    
     public Exams(Course course, LocalDate dateOfExam, int headCount, String room) {
         this.course = course;
         this.dateOfExam = dateOfExam;

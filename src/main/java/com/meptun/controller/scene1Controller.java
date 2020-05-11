@@ -275,6 +275,13 @@ public class scene1Controller implements Initializable {
 //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Register Course">
+        Course c1 = new Course("IK-IA1", "Web Solutions", CourseType.SEMINAR, 3);
+        Course c2 = new Course("IK-IPE", "Ping Pong", CourseType.PE, 0);
+        Course c2a = new Course("IK-IPE", "Football", CourseType.PE, 0);
+        Course c3 = new Course("IK-IB2", "Signal And Systems", CourseType.SEMINAR, 6);
+        Course c4 = new Course("IK-IN1", "Computer Networks", CourseType.SEMINAR, 6);
+        Course c5 = new Course("IK-EIS", "Enterprise Information System", CourseType.SEMINAR, 3);
+        
    @FXML void registerCoursePressed(){
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Course Registration");
@@ -297,10 +304,12 @@ public class scene1Controller implements Initializable {
         vbox.setLayoutY(100);
         
         CourseDAO cdao = new JPACourseDAO();
+        
         ObservableList ol = FXCollections.observableArrayList();
+        ol.add(c1);ol.add(c2);ol.add(c3);ol.add(c4);ol.add(c2a);ol.add(c5);
         
         List l = cdao.listCourses();
-        
+       
         for(int i=0;i<l.size();i++){
             ol.add(l.get(i));
         }
@@ -316,6 +325,8 @@ public class scene1Controller implements Initializable {
             dialog.setResultConverter(dialogButton -> {
                 if (dialogButton == register){ 
                     System.out.println(coursesCombo.getSelectionModel().getSelectedItem().toString());
+                    coursesTable.getItems().add((Course)coursesCombo.getSelectionModel().getSelectedItem());
+                    cdao.saveCourse((Course)coursesCombo.getSelectionModel().getSelectedItem());
                 }
                 if(dialogButton == ButtonType.CANCEL){
                     //
@@ -324,24 +335,7 @@ public class scene1Controller implements Initializable {
             });
 
         Optional<Pair<String, String>> result = dialog.showAndWait();
-        
-        /*GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        
-        dialog.getDialogPane().setContent(grid);
 
-            dialog.setResultConverter(dialogButton -> {
-                if (dialogButton == register){ 
-                }
-                if(dialogButton == ButtonType.CANCEL){
-                    //
-                }
-                return null;
-            });
-
-        Optional<Pair<String, String>> result = dialog.showAndWait();*/
     }
    //</editor-fold>
    
@@ -386,8 +380,16 @@ public class scene1Controller implements Initializable {
         dialog.getDialogPane().setContent(vbox);
 
             dialog.setResultConverter(dialogButton -> {
-                if (dialogButton == deregister){ 
+                if (dialogButton == deregister){
+                    ObservableList col = coursesTable.getItems();
                     System.out.println(coursesCombo.getSelectionModel().getSelectedItem().toString());
+                    for(int i=0;i<col.size();i++){
+                        if(coursesCombo.getSelectionModel().getSelectedItem().toString().equals(col.get(i).toString())){
+                            coursesTable.getItems().remove(i);
+                            cdao.deleteCourse((Course)coursesCombo.getSelectionModel().getSelectedItem());
+                        }
+                    }
+                    //coursesTable.getItems().remove((Course)coursesCombo.getSelectionModel().getSelectedItem());
                 }
                 if(dialogButton == ButtonType.CANCEL){
                     //
@@ -422,7 +424,16 @@ public class scene1Controller implements Initializable {
         vbox.setLayoutY(100);
         
         ExamsDAO edao = new JPAExamsDAO();
+        Exams e11 = new Exams("IK-WEBSE", "Ik-205", LocalDate.now(), 25, "Zoltan");
+        Exams e22 = new Exams("IK-ESS", "Ik-205", LocalDate.now(), 25, "Toth Laszlo");
+        Exams e33 = new Exams("IK-CMNE", "Ik-205", LocalDate.now(), 25, "Gal Zoltan");
+        Exams e44 = new Exams("IK-MNGD", "Ik-205", LocalDate.now(), 25, "Gal Zoltan");
+        e11.setCourse(c1);
+        e22.setCourse(c3);
+        e33.setCourse(c4);
+        e44.setCourse(c5);
         ObservableList ol = FXCollections.observableArrayList();
+        ol.add(e11);ol.add(e22);ol.add(e33);ol.add(e44);
         List l = edao.listExams();
         
         for(int i=0;i<l.size();i++){
@@ -440,6 +451,8 @@ public class scene1Controller implements Initializable {
             dialog.setResultConverter(dialogButton -> {
                 if (dialogButton == register){ 
                     System.out.println(examCombo.getSelectionModel().getSelectedItem().toString());
+                    examTable.getItems().add((Exams)examCombo.getSelectionModel().getSelectedItem());
+                    edao.saveExam((Exams)examCombo.getSelectionModel().getSelectedItem());
                 }
                 if(dialogButton == ButtonType.CANCEL){
                     //
@@ -449,29 +462,12 @@ public class scene1Controller implements Initializable {
 
         Optional<Pair<String, String>> result = dialog.showAndWait();
         
-        /*GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        
-        dialog.getDialogPane().setContent(grid);
-
-            dialog.setResultConverter(dialogButton -> {
-                if (dialogButton == register){ 
-                }
-                if(dialogButton == ButtonType.CANCEL){
-                    //
-                }
-                return null;
-            });
-
-        Optional<Pair<String, String>> result = dialog.showAndWait();*/
     }  
    //</editor-fold>
    
     //<editor-fold defaultstate="collapsed" desc="DeRegister Exam">
    @FXML void deRegisterExamPressed(){
-               Dialog<Pair<String, String>> dialog = new Dialog<>();
+         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Exam Deregistration");
         dialog.setHeaderText("Select exam to deregister");
         
@@ -511,7 +507,15 @@ public class scene1Controller implements Initializable {
 
             dialog.setResultConverter(dialogButton -> {
                 if (dialogButton == deregister){ 
+                    ObservableList eol = examTable.getItems();
                     System.out.println(examCombo.getSelectionModel().getSelectedItem().toString());
+                    for(int i=0;i<eol.size();i++){
+                        if(examCombo.getSelectionModel().getSelectedItem().toString().equals(eol.get(i).toString())){
+                            examTable.getItems().remove(i);
+                            edao.deleteExams((Exams)examCombo.getSelectionModel().getSelectedItem());
+                        }
+                    }
+                   // examTable.getItems().remove((Exams)examCombo.getSelectionModel().getSelectedItem());
                 }
                 if(dialogButton == ButtonType.CANCEL){
                     //

@@ -53,9 +53,6 @@ public class EmailUtil {
             Transport.send(msg);  
 
           System.out.println("EMail Sent Successfully!!");
-            Alert a = new Alert(Alert.AlertType.NONE);
-            a.setContentText("Email Sent Successfully");
-            a.show();
         }
         catch (UnsupportedEncodingException | MessagingException e) {
           e.printStackTrace();
