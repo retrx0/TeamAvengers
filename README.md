@@ -1,7 +1,10 @@
 # TeamAvengers
-Software Dev 2020 school group project
+Mini version of Neptun "Meptun"
 
-mini version of Neptun "Meptun"
+## About
+This Windows/Mac based application developed in an agile environment lets students see their basic
+information, the courses taken, ability to post on forums, list of relevant teachers and their emails and a
+built-in email client to send emails to the relevant teachers.
 
 ## Database:
 - connection driver_class - org.h2.Driver
@@ -12,4 +15,3 @@ mini version of Neptun "Meptun"
 
 
 check the main class for login username and password in mainApp
-  
