@@ -7,8 +7,8 @@ information, the courses taken, ability to post on forums, list of relevant teac
 built-in email client to send emails to the relevant teachers.
 
 ## Documentation
-1. [Documentaion Part 1](Meptun Documentation Part 1.pdf)
-2. [Documentaion Part 2](Meptun Documentation Part 2.pdf)
+1. [Documentaion Part 1](https://github.com/Purefekt/TeamAvengers/blob/master/Meptun%20Documentation%20Part%201.pdf)
+2. [Documentaion Part 2](https://github.com/Purefekt/TeamAvengers/blob/master/Meptun%20Documentation%20Part%202.pdf)
 
 ## Database:
 - connection driver_class - org.h2.Driver
